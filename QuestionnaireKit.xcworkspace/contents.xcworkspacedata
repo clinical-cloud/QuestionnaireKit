@@ -10,4 +10,7 @@
    <FileRef
       location = "group:../Swift-SMART/SwiftSMART.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:samples/QKDemo/QKDemo.xcodeproj">
+   </FileRef>
 </Workspace>

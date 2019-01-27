@@ -87,6 +87,7 @@
 			children = (
 				B44A16A821F9497A00A19D74 /* QuestionnaireKit */,
 				B44A16B321F9497A00A19D74 /* QuestionnaireKitTests */,
+				B44A16EE21FE510100A19D74 /* samples */,
 				B44A16A721F9497A00A19D74 /* Products */,
 				B44A16C121F94A1E00A19D74 /* Frameworks */,
 			);
@@ -163,6 +164,13 @@
 				B44A16D521F94A5B00A19D74 /* String+C3-PRO.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		B44A16EE21FE510100A19D74 /* samples */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = samples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -436,7 +444,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 3XD98RDPY6;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -462,7 +470,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 3XD98RDPY6;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
