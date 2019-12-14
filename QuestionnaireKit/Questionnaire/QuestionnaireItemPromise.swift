@@ -386,7 +386,7 @@ extension QuestionnaireItem {
 	func c3_resolveAnswerChoices(callback: @escaping (([ORKTextChoice]?, Error?) -> Void)) {
 		
 		// options are defined inline
-		if let optionList = option {
+		if let optionList = answerOption {
 			// TODO: implement localization of option text
 			// TODO: implement date, integer, and time
 			// TODO Get option score from extension -- Where/how to recored in questionnaire response?
@@ -420,7 +420,7 @@ extension QuestionnaireItem {
 		}
 		
 		// options are a referenced ValueSet
-		else if let options = options {
+		else if let options = answerValueSet {
 			options.resolve(ValueSet.self) { valueSet in
 				var choices = [ORKTextChoice]()
 				

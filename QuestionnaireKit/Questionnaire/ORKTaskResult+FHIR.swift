@@ -47,11 +47,12 @@ extension ORKTaskResult {
 		}
 		
 		// create and return questionnaire answers
-		let questionnaire = Reference()
-		questionnaire.reference = FHIRString(identifier)
+//		let questionnaire = Reference()
+//		questionnaire.reference = FHIRString(identifier)
 		
 		let answer = QuestionnaireResponse(status: .completed)
-		answer.questionnaire = questionnaire
+		//TODO need the source Questionnaire canonical URI
+//		answer.questionnaire = questionnaireURI
 		answer.item = groups
 		answer.deduplicateItemsByLinkId()
 		return answer

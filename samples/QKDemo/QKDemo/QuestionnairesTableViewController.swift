@@ -10,8 +10,7 @@ import QuestionnaireKit
 
 class QuestionnairesTableViewController: UITableViewController {
 	
-	let endpoint = "https://api-v5-stu3.hspconsortium.org/CareGuide/open"
-//	let endpoint = "http://sqlonfhir-stu3.azurewebsites.net/fhir"
+	let endpoint = "https://api-v8-r4.hspconsortium.org/CarePlanningR4/open"
 
 	var smart: Client?
 	

@@ -3,35 +3,32 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		B44A170121FE519F00A19D74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44A16FF21FE519F00A19D74 /* Main.storyboard */; };
-		B44A171121FE523900A19D74 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44A171021FE523900A19D74 /* ResearchKit.framework */; };
-		B44A171221FE523900A19D74 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B44A171021FE523900A19D74 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B44A171421FE523900A19D74 /* SMART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44A171321FE523900A19D74 /* SMART.framework */; };
-		B44A171521FE523900A19D74 /* SMART.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B44A171321FE523900A19D74 /* SMART.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B44A172221FE551600A19D74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B44A171821FE551600A19D74 /* Assets.xcassets */; };
 		B44A172321FE551600A19D74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44A171921FE551600A19D74 /* LaunchScreen.storyboard */; };
 		B44A172521FE551600A19D74 /* ResourceJsonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A171D21FE551600A19D74 /* ResourceJsonViewController.swift */; };
 		B44A172621FE551600A19D74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A171E21FE551600A19D74 /* AppDelegate.swift */; };
 		B44A172721FE551600A19D74 /* Bundle+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A171F21FE551600A19D74 /* Bundle+Utilities.swift */; };
 		B44A172821FE551600A19D74 /* QuestionnairesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A172021FE551600A19D74 /* QuestionnairesTableViewController.swift */; };
-		B44A172B21FE57D200A19D74 /* QuestionnaireKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44A172A21FE57D200A19D74 /* QuestionnaireKit.framework */; };
-		B44A172C21FE57D200A19D74 /* QuestionnaireKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B44A172A21FE57D200A19D74 /* QuestionnaireKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B450BD5E2333159C00BA3D89 /* QuestionnaireKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B450BD5C2333159C00BA3D89 /* QuestionnaireKit.framework */; };
+		B450BD5F2333159C00BA3D89 /* QuestionnaireKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B450BD5C2333159C00BA3D89 /* QuestionnaireKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B450BD602333159C00BA3D89 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B450BD5D2333159C00BA3D89 /* ResearchKit.framework */; };
+		B450BD612333159C00BA3D89 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B450BD5D2333159C00BA3D89 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B44A171621FE523900A19D74 /* Embed Frameworks */ = {
+		B450BD622333159C00BA3D89 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B44A171221FE523900A19D74 /* ResearchKit.framework in Embed Frameworks */,
-				B44A171521FE523900A19D74 /* SMART.framework in Embed Frameworks */,
-				B44A172C21FE57D200A19D74 /* QuestionnaireKit.framework in Embed Frameworks */,
+				B450BD612333159C00BA3D89 /* ResearchKit.framework in Embed Frameworks */,
+				B450BD5F2333159C00BA3D89 /* QuestionnaireKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,8 +42,6 @@
 		B44A170221FE51A100A19D74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B44A170521FE51A100A19D74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B44A170721FE51A100A19D74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B44A171021FE523900A19D74 /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B44A171321FE523900A19D74 /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B44A171821FE551600A19D74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B44A171A21FE551600A19D74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B44A171C21FE551600A19D74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -55,7 +50,8 @@
 		B44A171F21FE551600A19D74 /* Bundle+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Utilities.swift"; sourceTree = "<group>"; };
 		B44A172021FE551600A19D74 /* QuestionnairesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnairesTableViewController.swift; sourceTree = "<group>"; };
 		B44A172121FE551600A19D74 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B44A172A21FE57D200A19D74 /* QuestionnaireKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QuestionnaireKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B450BD5C2333159C00BA3D89 /* QuestionnaireKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QuestionnaireKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B450BD5D2333159C00BA3D89 /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B44A171121FE523900A19D74 /* ResearchKit.framework in Frameworks */,
-				B44A171421FE523900A19D74 /* SMART.framework in Frameworks */,
-				B44A172B21FE57D200A19D74 /* QuestionnaireKit.framework in Frameworks */,
+				B450BD602333159C00BA3D89 /* ResearchKit.framework in Frameworks */,
+				B450BD5E2333159C00BA3D89 /* QuestionnaireKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,11 +70,9 @@
 		B44A16EF21FE519F00A19D74 = {
 			isa = PBXGroup;
 			children = (
-				B44A172A21FE57D200A19D74 /* QuestionnaireKit.framework */,
-				B44A171321FE523900A19D74 /* SMART.framework */,
-				B44A171021FE523900A19D74 /* ResearchKit.framework */,
 				B44A16FA21FE519F00A19D74 /* QKDemo */,
 				B44A16F921FE519F00A19D74 /* Products */,
+				B450BD5B2333159C00BA3D89 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +112,15 @@
 			name = QKDemo;
 			sourceTree = "<group>";
 		};
+		B450BD5B2333159C00BA3D89 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B450BD5C2333159C00BA3D89 /* QuestionnaireKit.framework */,
+				B450BD5D2333159C00BA3D89 /* ResearchKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,13 +131,15 @@
 				B44A16F421FE519F00A19D74 /* Sources */,
 				B44A16F521FE519F00A19D74 /* Frameworks */,
 				B44A16F621FE519F00A19D74 /* Resources */,
-				B44A171621FE523900A19D74 /* Embed Frameworks */,
+				B450BD622333159C00BA3D89 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = QKDemo;
+			packageProductDependencies = (
+			);
 			productName = QKDemo;
 			productReference = B44A16F821FE519F00A19D74 /* QKDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -164,6 +168,9 @@
 				Base,
 			);
 			mainGroup = B44A16EF21FE519F00A19D74;
+			packageReferences = (
+				B450BD63233315F600BA3D89 /* XCRemoteSwiftPackageReference "Swift-SMART" */,
+			);
 			productRefGroup = B44A16F921FE519F00A19D74 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -365,7 +372,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = solutions.clinicalcloud.QKDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -383,7 +390,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = solutions.clinicalcloud.QKDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -410,6 +417,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B450BD63233315F600BA3D89 /* XCRemoteSwiftPackageReference "Swift-SMART" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/smart-on-fhir/Swift-SMART.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = B44A16F021FE519F00A19D74 /* Project object */;
 }

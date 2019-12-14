@@ -3,15 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		B44A16B021F9497A00A19D74 /* QuestionnaireKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44A16A621F9497A00A19D74 /* QuestionnaireKit.framework */; };
 		B44A16B521F9497A00A19D74 /* QuestionnaireKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16B421F9497A00A19D74 /* QuestionnaireKitTests.swift */; };
 		B44A16B721F9497A00A19D74 /* QuestionnaireKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B44A16A921F9497A00A19D74 /* QuestionnaireKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B44A16C321F94A1E00A19D74 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44A16C221F94A1E00A19D74 /* ResearchKit.framework */; };
-		B44A16C521F94A1E00A19D74 /* SMART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44A16C421F94A1E00A19D74 /* SMART.framework */; };
 		B44A16D621F94A5B00A19D74 /* FHIR+C3-PRO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16C721F94A5B00A19D74 /* FHIR+C3-PRO.swift */; };
 		B44A16D721F94A5B00A19D74 /* Foundation+C3-PRO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16C821F94A5B00A19D74 /* Foundation+C3-PRO.swift */; };
 		B44A16D821F94A5B00A19D74 /* ConditionalOrderedTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16CA21F94A5B00A19D74 /* ConditionalOrderedTask.swift */; };
@@ -25,6 +23,9 @@
 		B44A16E021F94A5B00A19D74 /* QuestionnairePromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16D221F94A5B00A19D74 /* QuestionnairePromise.swift */; };
 		B44A16E121F94A5B00A19D74 /* C3Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16D421F94A5B00A19D74 /* C3Error.swift */; };
 		B44A16E221F94A5B00A19D74 /* String+C3-PRO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16D521F94A5B00A19D74 /* String+C3-PRO.swift */; };
+		B450BD582333157A00BA3D89 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B450BD572333157A00BA3D89 /* ResearchKit.framework */; };
+		B450BD592333157A00BA3D89 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B450BD572333157A00BA3D89 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B4B79B86235800F400C7A431 /* SMART in Frameworks */ = {isa = PBXBuildFile; productRef = B4B79B85235800F400C7A431 /* SMART */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,20 @@
 			remoteInfo = QuestionnaireKit;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B450BD5A2333157A00BA3D89 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B450BD592333157A00BA3D89 /* ResearchKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B44A16A621F9497A00A19D74 /* QuestionnaireKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuestionnaireKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +74,7 @@
 		B44A16D221F94A5B00A19D74 /* QuestionnairePromise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnairePromise.swift; sourceTree = "<group>"; };
 		B44A16D421F94A5B00A19D74 /* C3Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = C3Error.swift; sourceTree = "<group>"; };
 		B44A16D521F94A5B00A19D74 /* String+C3-PRO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+C3-PRO.swift"; sourceTree = "<group>"; };
+		B450BD572333157A00BA3D89 /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B44A16C321F94A1E00A19D74 /* ResearchKit.framework in Frameworks */,
-				B44A16C521F94A1E00A19D74 /* SMART.framework in Frameworks */,
+				B4B79B86235800F400C7A431 /* SMART in Frameworks */,
+				B450BD582333157A00BA3D89 /* ResearchKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +142,7 @@
 		B44A16C121F94A1E00A19D74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B450BD572333157A00BA3D89 /* ResearchKit.framework */,
 				B44A16C221F94A1E00A19D74 /* ResearchKit.framework */,
 				B44A16C421F94A1E00A19D74 /* SMART.framework */,
 			);
@@ -195,12 +212,16 @@
 				B44A16A221F9497A00A19D74 /* Sources */,
 				B44A16A321F9497A00A19D74 /* Frameworks */,
 				B44A16A421F9497A00A19D74 /* Resources */,
+				B450BD5A2333157A00BA3D89 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = QuestionnaireKit;
+			packageProductDependencies = (
+				B4B79B85235800F400C7A431 /* SMART */,
+			);
 			productName = QuestionnaireKit;
 			productReference = B44A16A621F9497A00A19D74 /* QuestionnaireKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -230,14 +251,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Clinical Cloud Solutions, LLC";
 				TargetAttributes = {
 					B44A16A521F9497A00A19D74 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1100;
 					};
 					B44A16AE21F9497A00A19D74 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1100;
 					};
 				};
 			};
@@ -247,8 +270,12 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = B44A169C21F9497A00A19D74;
+			packageReferences = (
+				B4B79B84235800F400C7A431 /* XCRemoteSwiftPackageReference "Swift-SMART" */,
+			);
 			productRefGroup = B44A16A721F9497A00A19D74 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -444,7 +471,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3XD98RDPY6;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -459,7 +486,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = solutions.clinicalcloud.QuestionnaireKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -470,7 +497,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3XD98RDPY6;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -485,7 +512,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = solutions.clinicalcloud.QuestionnaireKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -504,7 +531,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = solutions.clinicalcloud.QuestionnaireKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -523,7 +550,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = solutions.clinicalcloud.QuestionnaireKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -559,6 +586,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B4B79B84235800F400C7A431 /* XCRemoteSwiftPackageReference "Swift-SMART" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/smart-on-fhir/Swift-SMART.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B4B79B85235800F400C7A431 /* SMART */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4B79B84235800F400C7A431 /* XCRemoteSwiftPackageReference "Swift-SMART" */;
+			productName = SMART;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B44A169D21F9497A00A19D74 /* Project object */;
 }
