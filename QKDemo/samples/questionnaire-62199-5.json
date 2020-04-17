@@ -1,0 +1,439 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "questionnaire-62199-5",
+  "url": "http://example.com/fhir/Questionnaire/62199-5",
+  "meta": {
+    "profile": [
+      "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/q"
+    ]
+  },
+  "version": "0.5",
+  "title": "Physical Function 10a",
+  "status": "draft",
+  "date": "2018-09-11",
+  "publisher": "Example Corp.",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "US",
+          "display": "United States of America"
+        }
+      ]
+    }
+  ],
+  "copyright": "Copyright 2010 PROMIS Health Organization or other individuals/entities that have contributed information and materials to Assessment Center, and are being used with the permission of the copyright holders.",
+  "code": [
+    {
+      "system": "http://loinc.org",
+      "code": "62199-5",
+      "display": "PROMIS short form - physical function 10a"
+    }
+  ],
+  "subjectType": [
+    "Patient"
+  ],
+  "item": [
+    {
+      "linkId": "g1",
+      "text": "Physical Function",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "linkId": "g1.d",
+          "text": "Please respond to each question or statement by selecting the answer that best describes your abilities.",
+          "type": "display",
+          "required": true
+        },
+        {
+          "linkId": "g1.q1",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "61588-0"
+            }
+          ],
+          "text": "Does your health now limit you in doing vigorous activities, such as running, lifting heavy objects, participating in strenuous sports?",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "#LL1021-6"
+        },
+        {
+          "linkId": "g1.q2",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "61697-9"
+            }
+          ],
+          "text": "Does your health now limit you in walking more than a mile (1.6 km)?",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "#LL1021-6"
+        },
+        {
+          "linkId": "g1.q3",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "61698-7"
+            }
+          ],
+          "text": "Does your health limit you in climbing one flight of stairs?",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "#LL1021-6"
+        },
+        {
+          "linkId": "g1.q4",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "61591-4"
+            }
+          ],
+          "text": "Does your health now limit you in lifting or carrying groceries?",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "#LL1021-6"
+        },
+        {
+          "linkId": "g1.q5",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "61589-8"
+            }
+          ],
+          "text": "Does your health now limit you in bending, kneeling, or stooping?",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "#LL1021-6"
+        },
+        {
+          "linkId": "g1.q6",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "61597-1"
+            }
+          ],
+          "text": "Are you able to do chores such as vacuuming or yard work?",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "#LL1022-4"
+        },
+        {
+          "linkId": "g1.q7",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "61602-9"
+            }
+          ],
+          "text": "Are you able to dress yourself, including tying shoelaces and buttoning your clothes?",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "#LL1022-4"
+        },
+        {
+          "linkId": "g1.q8",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "61661-5"
+            }
+          ],
+          "text": "Are you able to shampoo your hair?",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "#LL1022-4"
+        },
+        {
+          "linkId": "g1.q9",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "61637-5"
+            }
+          ],
+          "text": "Are you able to wash and dry your body?",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "#LL1022-4"
+        },
+        {
+          "linkId": "g1.q10",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "61704-3"
+            }
+          ],
+          "text": "Are you able to sit on and get up from the toilet?",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "answerValueSet": "#LL1022-4"
+        }
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+          "valueBoolean": true
+        }
+      ],
+      "linkId": "g2",
+      "text": "Score",
+      "type": "group",
+      "required": false,
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "{score}",
+                "display": "Score"
+              }
+            }
+          ],
+          "linkId": "g2.s1",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "77827-4",
+              "display": "PROMIS short form - physical function 10a - version 1.0 raw score"
+            }
+          ],
+          "text": "Scoring: \nAdd up all checked boxes. \n\nFor every:\nNot at all = 5;\nVery little = 4;\nSomewhat = 3;\nQuite a lot = 2;\nCannot do = 1",
+          "type": "integer",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "{Tscore}",
+                "display": "T-score"
+              }
+            }
+          ],
+          "linkId": "g2.s2",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "77866-2",
+              "display": "PROMIS physical function - version 1.0 T-score"
+            }
+          ],
+          "text": "Scoring: Follow PROMIS guidelines for computing T-score.",
+          "type": "decimal",
+          "required": false,
+          "repeats": false
+        }
+      ]
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "LL1021-6",
+      "meta": {
+        "profile": [
+          "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/qcvs"
+        ]
+      },
+      "url": "http://example.com/ValueSet/LL1021-6",
+      "identifier": [
+        {
+          "value": "LL1021-6"
+        }
+      ],
+      "version": "0.0.0",
+      "title": "[PROMIS] Not at all|Ver litt|Some|Qte lot|Can't do",
+      "status": "active",
+      "date": "2018-09-11",
+      "copyright": "This content LOINC is copyright 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use .",
+      "compose": {
+        "include": [
+          {
+            "valueSet": [
+              "http://loinc.org/vs/LL1021-6"
+            ]
+          }
+        ]
+      },
+      "expansion": {
+        "identifier": "urn:uuid:85ee8254-827c-4f23-ad31-861fa8c0e265",
+        "timestamp": "2018-09-11T02:35:44+00:00",
+        "total": 5,
+        "contains": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 5
+              }
+            ],
+            "system": "http://loinc.org",
+            "code": "LA6568-5",
+            "display": "Not at all"
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 4
+              }
+            ],
+            "system": "http://loinc.org",
+            "code": "LA13947-9",
+            "display": "Very little"
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 3
+              }
+            ],
+            "system": "http://loinc.org",
+            "code": "LA13909-9",
+            "display": "Somewhat"
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 2
+              }
+            ],
+            "system": "http://loinc.org",
+            "code": "LA11911-7",
+            "display": "Quite a lot"
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 1
+              }
+            ],
+            "system": "http://loinc.org",
+            "code": "LA13868-7",
+            "display": "Cannot do"
+          }
+        ]
+      }
+    },
+    {
+      "resourceType": "ValueSet",
+      "id": "LL1022-4",
+      "meta": {
+        "profile": [
+          "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/qcvs"
+        ]
+      },
+      "url": "http://example.com/ValueSet/LL1022-4",
+      "identifier": [
+        {
+          "value": "LL1022-4"
+        }
+      ],
+      "version": "0.0.0",
+      "title": "[PROMIS] Diffic: WO|W lit|W some|W much|Unab to do",
+      "status": "active",
+      "date": "2018-09-11",
+      "copyright": "This content LOINC is copyright 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use .",
+      "compose": {
+        "include": [
+          {
+            "valueSet": [
+              "http://loinc.org/vs/LL1022-4"
+            ]
+          }
+        ]
+      },
+      "expansion": {
+        "identifier": "urn:uuid:3b72fb27-4073-465a-877f-f2254d30a5c2",
+        "timestamp": "2018-09-11T02:40:22+00:00",
+        "total": 5,
+        "contains": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 5
+              }
+            ],
+            "system": "http://loinc.org",
+            "code": "LA13921-4",
+            "display": "Without any difficulty"
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 4
+              }
+            ],
+            "system": "http://loinc.org",
+            "code": "LA13918-0",
+            "display": "With a little difficulty"
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 3
+              }
+            ],
+            "system": "http://loinc.org",
+            "code": "LA13920-6",
+            "display": "With some difficulty"
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 2
+              }
+            ],
+            "system": "http://loinc.org",
+            "code": "LA13919-8",
+            "display": "With much difficulty"
+          },
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 1
+              }
+            ],
+            "system": "http://loinc.org",
+            "code": "LA13912-3",
+            "display": "Unable to do"
+          }
+        ]
+      }
+    }
+  ]
+}

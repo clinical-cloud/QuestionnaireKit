@@ -1,6 +1,5 @@
 //
 //  QuestionnaireExtensions.swift
-//  C3PRO
 //
 //  Created by Pascal Pfiffner on 5/20/15.
 //  Copyright © 2015 Boston Children's Hospital. All rights reserved.
@@ -28,13 +27,13 @@ extension QuestionnaireItem {
 	/**
 	Checks whether the item has "enableWhen" conditions, and if there are any instantiates ResultRequirements representing those.
 	*/
-	func c3_enableQuestionnaireElementWhen() throws -> [ResultRequirement]? {
+	func qk_enableQuestionnaireElementWhen() throws -> [ResultRequirement]? {
 		if let enableWhen = enableWhen {
 			var requirements = [ResultRequirement]()
 			
 			for when in enableWhen {
-				let questionIdentifier = try when.c3_questionIdentifier()
-				let result = try when.c3_answerResult(questionIdentifier)
+				let questionIdentifier = try when.qk_questionIdentifier()
+				let result = try when.qk_answerResult(questionIdentifier)
 				let req = ResultRequirement(step: questionIdentifier, result: result)
 				requirements.append(req)
 			}
@@ -53,9 +52,9 @@ extension QuestionnaireItemEnableWhen {
 	
 	- returns: A String representing the step identifier the receiver applies to
 	*/
-	func c3_questionIdentifier() throws -> String {
+	func qk_questionIdentifier() throws -> String {
 		guard let questionIdentifier = question?.string else {
-			throw C3Error.questionnaireEnableWhenIncomplete("\(self) has no `question` to refer to")
+			throw QKError.questionnaireEnableWhenIncomplete("\(self) has no `question` to refer to")
 		}
 		return questionIdentifier
 	}
@@ -71,8 +70,8 @@ extension QuestionnaireItemEnableWhen {
 	- parameter questionIdentifier: The identifier of the question step this extension applies to
 	- returns: An `ORKQuestionResult` representing the result that is required for the item to be shown
 	*/
-	func c3_answerResult(_ questionIdentifier: String) throws -> ORKQuestionResult {
-		let questionIdentifier = try c3_questionIdentifier()
+	func qk_answerResult(_ questionIdentifier: String) throws -> ORKQuestionResult {
+		let questionIdentifier = try qk_questionIdentifier()
 		if let answer = answerBoolean?.bool {
 			let result = ORKBooleanQuestionResult(identifier: questionIdentifier)
 			result.answer = answer
@@ -91,9 +90,9 @@ extension QuestionnaireItemEnableWhen {
 				result.answer = [value]
 				return result
 			}
-			throw C3Error.questionnaireEnableWhenIncomplete("\(self) has `answerCoding` but is missing a code, cannot create a question result")
+			throw QKError.questionnaireEnableWhenIncomplete("\(self) has `answerCoding` but is missing a code, cannot create a question result")
 		}
-		throw C3Error.questionnaireEnableWhenIncomplete("\(self) has no `answerType` type that is supported right now")
+		throw QKError.questionnaireEnableWhenIncomplete("\(self) has no `answerType` type that is supported right now")
 	}
 }
 

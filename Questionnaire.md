@@ -65,11 +65,13 @@ Examples
 
 Examples on how to achieve certain ResearchKit steps with FHIR.
 
-As of DSTU-2, questionnaire groups can contain other groups and questions.
+Questionnaire groups can contain other groups and questions.
 If you add a `title` or `text` to a group, it will automatically insert an instruction step.
 Otherwise the group will be transparent, only its questions will show up.
 
 ### Choice and Bool Questions
+
+_Note: the following referenced example json files are not yet included in this repo, but will be added soon_
 
 There's a small sample Questionnaire [Questionnaire-choices.json](../../examples/Questionnaire/Questionnaire-choices.json) that has a `choice` and some `boolean` type questions.
 A _choice_ question becomes a _multiple choice_ question when its `repeats` flag is set to true.

@@ -10,7 +10,7 @@ import QuestionnaireKit
 
 class QuestionnairesTableViewController: UITableViewController {
 	
-	let endpoint = "https://api-v8-r4.hspconsortium.org/CarePlanningR4/open"
+	var endpointURL: String? = nil
 
 	var smart: Client?
 	
@@ -22,13 +22,11 @@ class QuestionnairesTableViewController: UITableViewController {
         super.viewDidLoad()
 		self.title = "Questionnaies"
 		self.clearsSelectionOnViewWillAppear = false
-		self.refreshControl = UIRefreshControl()
-		self.refreshControl?.addTarget(self, action: #selector(loadQuestionnaires(_:)), for: .valueChanged)
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
 		if questionnaires == nil {
-			loadQuestionnaires(self)
+			loadQuestionnaires()
 		}
 	}
 
@@ -84,8 +82,34 @@ class QuestionnairesTableViewController: UITableViewController {
 	
 	// MARK: - Questionnaire support
 
-	@objc private func loadQuestionnaires(_ sender: Any) {
-		guard let base = URL(string: endpoint) else {
+	@objc private func loadQuestionnaires() {
+		self.questionnaires = []
+		loadLocalQuestionnaires()
+		loadRemoteQuestionnaires()
+	}
+	
+	private func loadLocalQuestionnaires() {
+		let questionnaireFiles = [
+			"questionnaire-44249-1",
+			"questionnaire-62199-5",
+			"questionnaire-sdoh-screening",
+			"questionnaire-example-sampler",
+		]
+		
+		for fileName in questionnaireFiles {
+			do {
+				if let questionnaire = try ResourceLoader.loadResource(type: Questionnaire.self, filename: fileName, directory: "samples") {
+					self.questionnaires?.append(questionnaire)
+				}
+			}
+			catch {
+				print("Error loading sample data file: \(fileName)")
+			}
+		}
+	}
+		
+	private func loadRemoteQuestionnaires() {
+		guard let endpoint = endpointURL, let base = URL(string: endpoint) else {
 			return
 		}
 		markBusy()

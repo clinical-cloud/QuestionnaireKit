@@ -1,6 +1,5 @@
 //
 //  QuestionnairePromise.swift
-//  C3PRO
 //
 //  Created by Pascal Pfiffner on 4/20/15.
 //  Copyright © 2015 Boston Children's Hospital. All rights reserved.
@@ -66,7 +65,7 @@ open class QuestionnairePromise: QuestionnairePromiseProto {
 	*/
 	open func fulfill(requiring parentRequirements: [ResultRequirement]?, callback: @escaping (([Error]?) -> Void)) {
 		guard let item = questionnaire.item, item.count > 0 else {
-			callback([C3Error.questionnaireInvalidNoTopLevelItem])
+			callback([QKError.questionnaireInvalidNoTopLevelItem])
 			return
 		}
 		
@@ -84,7 +83,7 @@ open class QuestionnairePromise: QuestionnairePromiseProto {
 				callback(errors)
 			}
 			else {
-				callback(errors ?? [C3Error.questionnaireUnknownError])
+				callback(errors ?? [QKError.questionnaireUnknownError])
 			}
 		}
 	}

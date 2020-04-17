@@ -1,6 +1,5 @@
 //
 //  ConditionalStep.swift
-//  C3PRO
 //
 //  Created by Pascal Pfiffner on 4/27/15.
 //  Copyright © 2015 Boston Children's Hospital. All rights reserved.
@@ -92,8 +91,8 @@ extension ConditionalStep {
 				if let questionResults = stepResult.results as? [ORKQuestionResult] {
 					var ok = false
 					for questionResult in questionResults {
-						//c3_logIfDebug("===>  \(questionResult.identifier) is \(questionResult.answer), needs to be \(requirement.result.answer): \(questionResult.c3_hasSameResponse(requirement.result))")
-						if questionResult.c3_hasSameResponse(requirement.result) {
+						//qk_logIfDebug("===>  \(questionResult.identifier) is \(questionResult.answer), needs to be \(requirement.result.answer): \(questionResult.qk_hasSameResponse(requirement.result))")
+						if questionResult.qk_hasSameResponse(requirement.result) {
 							ok = true
 						}
 					}
@@ -102,11 +101,11 @@ extension ConditionalStep {
 					}
 				}
 				else {
-					c3_logIfDebug("Expecting Array<ORKQuestionResult> but got \(String(describing: stepResult.results))")
+					qk_logIfDebug("Expecting Array<ORKQuestionResult> but got \(String(describing: stepResult.results))")
 				}
 			}
 			else {
-				c3_logIfDebug("Next step \(identifier) has a condition on \(requirement.questionIdentifier), but the latter has no result yet")
+				qk_logIfDebug("Next step \(identifier) has a condition on \(requirement.questionIdentifier), but the latter has no result yet")
 				return false
 			}
 		}

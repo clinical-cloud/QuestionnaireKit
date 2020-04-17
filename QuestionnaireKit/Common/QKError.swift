@@ -1,6 +1,5 @@
 //
-//  C3Error.swift
-//  C3PRO
+//  QKError.swift
 //
 //  Created by Pascal Pfiffner on 20/10/15.
 //  Copyright © 2015 Boston Children's Hospital. All rights reserved.
@@ -23,13 +22,13 @@ import SMART
 
 
 /// The FHIR version used by this instance of the framework.
-public let C3PROFHIRVersion = "3.0.0"
+public let QuestionnaireKitFHIRVersion = "4.0.0"
 
 
 /**
-Errors thrown around when working with C3-PRO.
+Errors thrown around when working with QuestionnaireKit.
 */
-public enum C3Error: Error, CustomStringConvertible {
+public enum QKError: Error, CustomStringConvertible {
 	
 	/// The mentioned feature is not implemented.
 	case notImplemented(String)
@@ -65,76 +64,10 @@ public enum C3Error: Error, CustomStringConvertible {
 	case extensionIncomplete(String)
 	
 	
-	// MARK: Consent
-	
-	/// The consent is lacking a patient reference.
-	case consentNoPatientReference(Error)
-	
-	/// The necessary contract is not present.
-	case consentContractNotPresent
-	
-	/// The Contract resource does not have any `term`s that can be used for consenting.
-	case consentContractHasNoTerms
-	
-	/// No ContractTerm.type.coding was found.
-	case consentSectionHasNoType
-	
-	/// The given consent section type is not known to ResearchKit.
-	case consentSectionTypeUnknownToResearchKit(String)
-	
-	
-	// MARK: User & Consent
-	
-	/// The schedule's file-format, or a date format string, is invalid.
-	case invalidScheduleFormat(String)
-	
-	/// No user has been enrolled at this time.
-	case noUserEnrolled
-	
-	/// This is a user without user id.
-	case userHasNoUserId
-	
-	
 	// MARK: Server
 	
 	/// No server is configured.
 	case serverNotConfigured
-	
-	/// Data queue flushing was halted.
-	case dataQueueFlushHalted
-	
-	
-	// MARK: Encryption & JWT
-	
-	/// The given error occurred during encryption.
-	case encryptionFailedWithStatus(OSStatus)
-	
-	/// The X509 certificate is not present at the given location.
-	case encryptionX509CertificateNotFound(String)
-	
-	/// The X509 certificate could not be read from the given location.
-	case encryptionX509CertificateNotRead(String)
-	
-	/// The X509 certificate could not be loaded for the given reason.
-	case encryptionX509CertificateNotLoaded(String)
-	
-	/// Some JWT data was refuted.
-	case jwtDataRefuted
-	
-	/// The JWT payload is missing its audience.
-	case jwtMissingAudience
-	
-	/// The JWT `aud` param is not a valid URL.
-	case jwtInvalidAudience(String)
-	
-	
-	// MARK: Services
-	
-	/// Geolocation services are disabled or restricted.
-	case locationServicesDisabled
-	
-	/// Access to the microphone is disabled.
-	case microphoneAccessDenied
 	
 	
 	// MARK: Questionnaire
@@ -159,21 +92,6 @@ public enum C3Error: Error, CustomStringConvertible {
 	
 	/// Unknown error handling questionnaire.
 	case questionnaireUnknownError
-	
-	
-	// MARK: HealthKit
-	
-	/// Access to HealthKit was not granted.
-	case healthKitNotAvailable
-	
-	/// There is no HealthKit sample of the given type.
-	case noSuchHKSampleType(String)
-	
-	/// The respective HealthKit quantity cannot be converted to the desired unit.
-	case quantityNotCompatibleWithUnit
-	
-	/// The interval to query data is too small.
-	case intervalTooSmall
 	
 	
 	// MARK: - Custom String Convertible
@@ -206,48 +124,8 @@ public enum C3Error: Error, CustomStringConvertible {
 		case .extensionIncomplete(let reason):
 			return "Extension is incomplete: \(reason)"
 		
-		case .consentNoPatientReference(let underlying):
-			return "Failed to generate a relative reference for the patient: \(underlying)"
-		case .consentContractNotPresent:
-			return "No Contract resource, cannot continue"
-		case .consentContractHasNoTerms:
-			return "The Contract resource does not have any terms that can be used for consenting"
-		case .consentSectionHasNoType:
-			return "Looking for consent type in ContractTerm.type.coding but none was found"
-		case .consentSectionTypeUnknownToResearchKit(let type):
-			return "Unknown consent section type “\(type)”"
-		
-		case .invalidScheduleFormat(let str):
-			return "Schedule format is invalid".c3_localized + ":\n\n" + str
-		case .noUserEnrolled:
-			return "Not enrolled in the study yet".c3_localized
-		case .userHasNoUserId:
-			return "The user does not have a userId".c3_localized
-		
 		case .serverNotConfigured:
 			return "No server has been configured"
-		case .dataQueueFlushHalted:
-			return "Flush halted"
-		
-		case .encryptionFailedWithStatus(let status):
-			return "Failed to encrypt data with key: OSStatus \(status)"
-		case .encryptionX509CertificateNotFound(let file):
-			return "Bundled X509 certificate «\(file).crt» not found"
-		case .encryptionX509CertificateNotRead(let file):
-			return "Failed to read bundled X509 certificate «\(file).crt»"
-		case .encryptionX509CertificateNotLoaded(let message):
-			return message
-		case .jwtDataRefuted:
-			return "You refuted some of the information contained in the code".c3_localized
-		case .jwtMissingAudience:
-			return "The JWT is missing its audience (`aud` parameter)".c3_localized
-		case .jwtInvalidAudience(let str):
-			return "The JWT `aud` param's value is “{{aud}}”, which is not a valid URL".c3_localized.replacingOccurrences(of: "{{aud}}", with: str)
-		
-		case .locationServicesDisabled:
-			return "Location services are disabled or have been restricted"
-		case .microphoneAccessDenied:
-			return "Access to the microphone has been denied for this app"
 		
 		case .questionnaireNotPresent:
 			return "I do not have a questionnaire just yet"
@@ -263,15 +141,6 @@ public enum C3Error: Error, CustomStringConvertible {
 			return "Unknown error finishing questionnaire"
 		case .questionnaireUnknownError:
 			return "Unknown error handling questionnaire"
-		
-		case .healthKitNotAvailable:
-			return "HealthKit is not available on your device"
-		case .noSuchHKSampleType(let typeIdentifier):
-			return "There is no HKSampleType “\(typeIdentifier)”"
-		case .quantityNotCompatibleWithUnit:
-			return "The unit is not compatible with this quantity"
-		case .intervalTooSmall:
-			return "The interval is too small"
 		}
 	}
 }
@@ -282,7 +151,7 @@ Ensures that the given block is executed on the main queue.
 
 - parameter block: The block to execute on the main queue.
 */
-public func c3_performOnMainQueue(_ block: @escaping (() -> Void)) {
+public func qk_performOnMainQueue(_ block: @escaping (() -> Void)) {
 	if Thread.current.isMainThread {
 		block()
 	}
@@ -297,7 +166,7 @@ public func c3_performOnMainQueue(_ block: @escaping (() -> Void)) {
 /**
 Prints the given message to stdout if `DEBUG` is defined and true. Prepends filename, line number and method/function name.
 */
-public func c3_logIfDebug(_ message: @autoclosure () -> String, function: String = #function, file: NSString = #file, line: Int = #line) {
+public func qk_logIfDebug(_ message: @autoclosure () -> String, function: String = #function, file: NSString = #file, line: Int = #line) {
 	#if DEBUG
 		print("[\(file.lastPathComponent):\(line)] \(function)  \(message())")
 	#endif
@@ -307,7 +176,7 @@ public func c3_logIfDebug(_ message: @autoclosure () -> String, function: String
 /**
 Prints the given message to stdout. Prepends filename, line number, method/function name and "WARNING:".
 */
-public func c3_warn(_ message: @autoclosure () -> String, function: String = #function, file: NSString = #file, line: Int = #line) {
+public func qk_warn(_ message: @autoclosure () -> String, function: String = #function, file: NSString = #file, line: Int = #line) {
 	print("[\(file.lastPathComponent):\(line)] \(function)  WARNING: \(message())")
 }
 

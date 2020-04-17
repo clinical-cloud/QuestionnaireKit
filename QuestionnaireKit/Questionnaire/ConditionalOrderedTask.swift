@@ -1,9 +1,11 @@
 //
 //  ConditionalOrderedTask.swift
-//  C3PRO
 //
 //  Created by Pascal Pfiffner on 4/27/15.
 //  Copyright © 2015 Boston Children's Hospital. All rights reserved.
+//
+//  Updated by Dave Carlson
+//  Copyright © 2020 Clinical Cloud Solutions, LLC. All rights reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.

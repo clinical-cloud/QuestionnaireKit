@@ -1,6 +1,5 @@
 //
-//  Foundation+C3-PRO.swift
-//  C3PRO
+//  Foundation+QK.swift
 //
 //  Created by Pascal Pfiffner on 4/27/15.
 //  Copyright © 2015 Boston Children's Hospital. All rights reserved.
@@ -28,7 +27,7 @@ extension String {
 	
 	- returns: The receiver with multiple spaces stripped
 	*/
-	func c3_stripMultipleSpaces() -> String {
+	func qk_stripMultipleSpaces() -> String {
 		do {
 			let regEx = try NSRegularExpression(pattern: " +", options: [])
 			return regEx.stringByReplacingMatches(in: self, options: [], range: NSMakeRange(0, count), withTemplate: " ")
@@ -47,12 +46,12 @@ extension FileManager {
 	
 	- returns: The path to the app library
 	*/
-	public func c3_appLibraryDirectory() throws -> String {
+	public func qk_appLibraryDirectory() throws -> String {
 		let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
 		if let first = paths.first {
 			return first
 		}
-		throw C3Error.appLibraryDirectoryNotPresent
+		throw QKError.appLibraryDirectoryNotPresent
 	}
 }
 
@@ -68,7 +67,7 @@ extension Calendar {
 	3. number of days in period
 	4. name of period
 	*/
-	public func c3_reverseProgressiveDateComponentsSinceToday() -> [(DateComponents, DateComponents, Int, String)] {
+	public func qk_reverseProgressiveDateComponentsSinceToday() -> [(DateComponents, DateComponents, Int, String)] {
 		let now = Date()
 		let startComponents = dateComponents([.day, .weekday, .month, .year], from: now)
 		
@@ -91,12 +90,12 @@ extension Calendar {
 		thisWeek.day! -= thisWeek.weekday!
 		var week = startComponents
 		week.day! -= week.weekday! + 7
-		intervals.append((week, thisWeek, 7, "Last\nWeek".c3_localized))
+		intervals.append((week, thisWeek, 7, "Last\nWeek".qk_localized))
 		last = week
 		
 		var weekBefore = week
 		weekBefore.day! -= 7
-		intervals.append((weekBefore, last, 7, "Week\nBfor".c3_localized))
+		intervals.append((weekBefore, last, 7, "Week\nBfor".qk_localized))
 		last = weekBefore
 		
 		// months: pick the month of `weekBefore` as starting month, then count down three more months
@@ -119,7 +118,7 @@ extension Calendar {
 			last = comps
 		}
 		//for (fr, to, days, name) in intervals {
-		//	c3_logIfDebug("===>  \(date(from: fr)?.description ?? "nil") - \(date(from: to)?.description ?? "nil"), \(days) days: \(name.replacingOccurrences(of: "\n", with: " "))")
+		//	qk_logIfDebug("===>  \(date(from: fr)?.description ?? "nil") - \(date(from: to)?.description ?? "nil"), \(days) days: \(name.replacingOccurrences(of: "\n", with: " "))")
 		//}
 		return intervals
 	}

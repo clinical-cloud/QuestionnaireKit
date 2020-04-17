@@ -1,6 +1,5 @@
 //
-//  String+C3-PRO.swift
-//  C3PRO
+//  String+QK.swift
 //
 //  Created by Pascal Pfiffner on 1/16/16.
 //  Copyright © 2016 Boston Children's Hospital. All rights reserved.
@@ -26,18 +25,18 @@ Extending _String_ to provide for easy framework localization.
 */
 extension String {
 	
-	/// Convenience getter for localized strings, uses `NSLocalizedString` internally on the main bundle and the "C3PRO" table.
-	public var c3_localized: String {
-		return NSLocalizedString(self, tableName: "C3PRO", bundle: Bundle(for: QuestionnaireController.self), value: self, comment: "")
+	/// Convenience getter for localized strings, uses `NSLocalizedString` internally on the main bundle and the "QuestionnaireKit" table.
+	public var qk_localized: String {
+		return NSLocalizedString(self, tableName: "QuestionnaireKit", bundle: Bundle(for: QuestionnaireController.self), value: self, comment: "")
 	}
 	
 	/**
-	Convenience method for string localizations that have a comment. Looks for the "C3PRO" table in the main bundle, i.e. `C3PRO.strings`.
+	Convenience method for string localizations that have a comment. Looks for the "QuestionnaireKit" table in the main bundle, i.e. `QuestionnaireKit.strings`.
 	
 	- parameter comment: The comment for localizers
-	- returns: A localized string, if found in the "C3PRO" table
+	- returns: A localized string, if found in the "QuestionnaireKit" table
 	*/
-	public func c3_localized(_ comment: String) -> String {
-		return NSLocalizedString(self, tableName: "C3PRO", bundle: Bundle(for: QuestionnaireController.self), value: self, comment: comment)
+	public func qk_localized(_ comment: String) -> String {
+		return NSLocalizedString(self, tableName: "QuestionnaireKit", bundle: Bundle(for: QuestionnaireController.self), value: self, comment: comment)
 	}
 }

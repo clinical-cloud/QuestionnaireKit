@@ -4,10 +4,4 @@
    <FileRef
       location = "group:QuestionnaireKit.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:samples/QKDemo/QKDemo.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:../../Apple/ResearchKit/ResearchKit.xcodeproj">
-   </FileRef>
 </Workspace>

@@ -1,6 +1,5 @@
 //
 //  QuestionnaireController.swift
-//  C3PRO
 //
 //  Created by Pascal Pfiffner on 5/20/15.
 //  Copyright © 2015 Boston Children's Hospital. All rights reserved.
@@ -33,7 +32,7 @@ The `whenCompleted` callback is called when the user completes the questionnaire
 a `QuestionnaireResponse` resource.
 The `whenCancelledOrFailed` callback is called when the questionnaire is cancelled (error = nil) or finishes with an error.
 
-See [Questionnaire/README.md](https://github.com/C3-PRO/c3-pro-ios-framework/tree/master/Sources/Questionnaire#questionnairecontroller) for detailed instructions.
+See [Questionnaire/README.md](https://github.com/clinical-cloud/QuestionnaireKit/tree/master/Questionnaire#questionnairecontroller) for detailed instructions.
 */
 open class QuestionnaireController: NSObject, ORKTaskViewControllerDelegate {
 	
@@ -69,25 +68,25 @@ open class QuestionnaireController: NSObject, ORKTaskViewControllerDelegate {
 	*/
 	func prepareQuestionnaire(callback: @escaping ((ORKTask?, Error?) -> Void)) {
 		if let questionnaire = questionnaire {
-			logger?.trace("C3-PRO", msg: "Fulfilling promise for \(questionnaire)")
+			logger?.trace("QuestionnaireKit", msg: "Fulfilling promise for \(questionnaire)")
 			let promise = QuestionnairePromise(questionnaire: questionnaire)
 			promise.fulfill(requiring: nil) { errors in
 				DispatchQueue.main.async {
 					var multiErrors: Error?
 					if let errs = errors {
-						multiErrors = C3Error.multipleErrors(errs)
+						multiErrors = QKError.multipleErrors(errs)
 					}
 					
 					if let tsk = promise.task {
 						if let errors = multiErrors {
-							self.logger?.debug("C3-PRO", msg: "Successfully prepared questionnaire but encountered errors:\n\(errors)")
+							self.logger?.debug("QuestionnaireKit", msg: "Successfully prepared questionnaire but encountered errors:\n\(errors)")
 						}
-						self.logger?.trace("C3-PRO", msg: "Promise for \(questionnaire) fulfilled")
+						self.logger?.trace("QuestionnaireKit", msg: "Promise for \(questionnaire) fulfilled")
 						callback(tsk, multiErrors)
 					}
 					else {
-						let err = multiErrors ?? C3Error.questionnaireUnknownError
-						self.logger?.trace("C3-PRO", msg: "Promise for \(questionnaire) fulfilled with error \(err)")
+						let err = multiErrors ?? QKError.questionnaireUnknownError
+						self.logger?.trace("QuestionnaireKit", msg: "Promise for \(questionnaire) fulfilled with error \(err)")
 						callback(nil, err)
 					}
 				}
@@ -95,7 +94,7 @@ open class QuestionnaireController: NSObject, ORKTaskViewControllerDelegate {
 		}
 		else {
 			callOnMainThread {
-				callback(nil, C3Error.questionnaireNotPresent)
+				callback(nil, QKError.questionnaireNotPresent)
 			}
 		}
 	}
@@ -137,13 +136,15 @@ open class QuestionnaireController: NSObject, ORKTaskViewControllerDelegate {
 	func didFinish(_ viewController: ORKTaskViewController, reason: ORKTaskViewControllerFinishReason) {
 		switch reason {
 		case .failed:
-			didFailWithError(viewController, error: C3Error.questionnaireFinishedWithError)
+			didFailWithError(viewController, error: QKError.questionnaireFinishedWithError)
 		case .completed:
-			whenCompleted?(viewController, viewController.result.c3_asQuestionnaireResponse(for: viewController.task))
+			whenCompleted?(viewController, viewController.result.qk_asQuestionnaireResponse(for: viewController.task))
 		case .discarded:
 			didFailWithError(viewController, error: nil)
 		case .saved:
 			// TODO: support saving tasks
+			didFailWithError(viewController, error: nil)
+		@unknown default:
 			didFailWithError(viewController, error: nil)
 		}
 	}

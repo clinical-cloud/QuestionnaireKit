@@ -1,6 +1,5 @@
 //
 //  QuestionnaireItemPromise.swift
-//  C3PRO
 //
 //  Created by Pascal Pfiffner on 4/20/15.
 //  Copyright © 2015 Boston Children's Hospital. All rights reserved.
@@ -26,7 +25,7 @@ import ResearchKit
 let kORKTextChoiceSystemSeparator: Character = " "
 let kORKTextChoiceDefaultSystem = "https://fhir.smalthealthit.org"
 let kORKTextChoiceMissingCodeCode = "⚠️"
-let kC3ValuePickerFormatExtensionURL = "http://fhir-registry.smarthealthit.org/StructureDefinition/value-picker"
+let kQKValuePickerFormatExtensionURL = "http://fhir-registry.smarthealthit.org/StructureDefinition/value-picker"
 
 
 /**
@@ -41,7 +40,7 @@ class QuestionnaireItemPromise: QuestionnairePromiseProto {
 	weak var parent: QuestionnaireItemPromise?
 	
 	/// The step(s), internally assigned after the promise has been successfully fulfilled.
-	internal(set) var steps: [ORKStep]?
+	internal var steps: [ORKStep]?
 	
 	
 	/**
@@ -70,18 +69,18 @@ class QuestionnaireItemPromise: QuestionnairePromiseProto {
 	func fulfill(requiring parentRequirements: [ResultRequirement]?, callback: @escaping (([Error]?) -> Void)) {
 		
 		// resolve answer format, THEN resolve sub-groups, if any
-		item.c3_asAnswerFormat() { format, error in
+		item.qk_asAnswerFormat() { format, error in
 			var steps = [ORKStep]()
 			var thisStep: ConditionalStep?
 			var errors = [Error]()
 			var requirements = parentRequirements ?? [ResultRequirement]()
-//			let (title, text) = self.item.c3_bestTitleAndText()
+//			let (title, text) = self.item.qk_bestTitleAndText()
 			let title = self.bestTitle()
-			let text = self.item.c3_bestText()
+			let text = self.item.qk_bestText()
 			
 			// find item's "enableWhen" requirements
 			do {
-				if let myreqs = try self.item.c3_enableQuestionnaireElementWhen() {
+				if let myreqs = try self.item.qk_enableQuestionnaireElementWhen() {
 					requirements.append(contentsOf: myreqs)
 				}
 			}
@@ -90,7 +89,7 @@ class QuestionnaireItemPromise: QuestionnairePromiseProto {
 			}
 			
 			// a question may be hidden from user presentation
-			if true == self.item.c3_questionHidden() {
+			if true == self.item.qk_questionHidden() {
 				// skip
 			}
 				
@@ -124,7 +123,7 @@ class QuestionnaireItemPromise: QuestionnairePromiseProto {
 			}
 			
 			// do we have sub-groups?
-			if self.item.c3_questionHidden() != true, let subitems = self.item.item {
+			if self.item.qk_questionHidden() != true, let subitems = self.item.item {
 				let subpromises = subitems.map() { QuestionnaireItemPromise(item: $0, parent: ("{root}" == self.linkId) ? nil : self) }
 				
 				// fulfill all group promises
@@ -160,7 +159,7 @@ class QuestionnaireItemPromise: QuestionnairePromiseProto {
 		
 		var promise: QuestionnaireItemPromise? = self
 		while title == nil, promise != nil {
-			title = promise?.item.c3_questionTitle()
+			title = promise?.item.qk_questionTitle()
 			if nil == title, promise?.item.type == .group {
 				title = promise?.item.text?.string
 			}
@@ -208,14 +207,14 @@ extension QuestionnaireItem {
 	
 	- returns: string for text field
 	*/
-	func c3_bestText() -> String? {
+	func qk_bestText() -> String? {
 		let cDisplay = code?.filter() { return nil != $0.display }.map() { return $0.display!.localized }
 		let cCodes = code?.filter() { return nil != $0.code }.map() { return $0.code!.string }		// TODO: can these be localized?
 		
 		var txt = text?.localized
 		
 		if nil == txt {
-			txt = c3_questionInstruction() ?? c3_questionHelpText()		// even if the title is still nil, we won't want to populate the title with help text
+			txt = qk_questionInstruction() ?? qk_questionHelpText()		// even if the title is still nil, we won't want to populate the title with help text
 		}
 		// TODO: Even if we have instructions, show help somewhere if present
 		
@@ -224,7 +223,7 @@ extension QuestionnaireItem {
 			txt = cDisplay?.first ?? cCodes?.first
 		}
 		
-		return txt?.c3_stripMultipleSpaces()
+		return txt?.qk_stripMultipleSpaces()
 	}
 	
 	/**
@@ -232,16 +231,16 @@ extension QuestionnaireItem {
 	
 	- returns: A tuple of strings for title and text
 	*/
-	func c3_bestTitleAndText() -> (String?, String?) {
+	func qk_bestTitleAndText() -> (String?, String?) {
 		let cDisplay = code?.filter() { return nil != $0.display }.map() { return $0.display!.localized }
 		let cCodes = code?.filter() { return nil != $0.code }.map() { return $0.code!.string }		// TODO: can these be localized?
 		
 //		var ttl = cDisplay?.first ?? cCodes?.first
-		let ttl = c3_questionTitle()
+		let ttl = qk_questionTitle()
 		var txt = text?.localized
 		
 		if nil == txt {
-			txt = c3_questionInstruction() ?? c3_questionHelpText()		// even if the title is still nil, we won't want to populate the title with help text
+			txt = qk_questionInstruction() ?? qk_questionHelpText()		// even if the title is still nil, we won't want to populate the title with help text
 		}
 		// TODO: Even if we have title and instructions, show help somewhere if present
 		
@@ -250,38 +249,38 @@ extension QuestionnaireItem {
 			txt = cDisplay?.first ?? cCodes?.first
 		}
 		
-		return (ttl?.c3_stripMultipleSpaces(), txt?.c3_stripMultipleSpaces())
+		return (ttl?.qk_stripMultipleSpaces(), txt?.qk_stripMultipleSpaces())
 	}
 	
-	func c3_questionTitle() -> String? {
+	func qk_questionTitle() -> String? {
 		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-title")?.first?.valueString?.localized
 	}
 	
-	func c3_questionHidden() -> Bool? {
+	func qk_questionHidden() -> Bool? {
 		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden")?.first?.valueBoolean?.bool
 	}
 	
-	func c3_questionMinOccurs() -> Int? {
+	func qk_questionMinOccurs() -> Int? {
 		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs")?.first?.valueInteger?.int
 	}
 	
-	func c3_questionMaxOccurs() -> Int? {
+	func qk_questionMaxOccurs() -> Int? {
 		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs")?.first?.valueInteger?.int
 	}
 	
-	func c3_questionInstruction() -> String? {
+	func qk_questionInstruction() -> String? {
 		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-instruction")?.first?.valueString?.localized
 	}
 	
-	func c3_questionHelpText() -> String? {
+	func qk_questionHelpText() -> String? {
 		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-help")?.first?.valueString?.localized
 	}
 	
-	func c3_numericAnswerUnit() -> String? {
+	func qk_numericAnswerUnit() -> String? {
 		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-units")?.first?.valueString?.localized
 	}
 	
-	func c3_defaultAnswer() -> Extension? {
+	func qk_defaultAnswer() -> Extension? {
 		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-defaultValue")?.first
 	}
 	
@@ -290,13 +289,13 @@ extension QuestionnaireItem {
 	Determine ResearchKit's answer format for the question type.
 	
 	Questions are multiple choice if "repeats" is set to true and the "max-occurs" extension is either not defined or larger than 1. See
-	`c3_answerChoiceStyle`.
+	`qk_answerChoiceStyle`.
 	
 	TODO: "open-choice" allows to choose an option OR to give a textual response: implement
 	
 	[x] ORKScaleAnswerFormat:           "integer" plus min- and max-values defined, where max > min
 	[ ] ORKContinuousScaleAnswerFormat:
-	[x] ORKValuePickerAnswerFormat:     "choice" (not multiple) plus extension `kC3ValuePickerFormatExtensionURL` (bool)
+	[x] ORKValuePickerAnswerFormat:     "choice" (not multiple) plus extension `kQKValuePickerFormatExtensionURL` (bool)
 	[ ] ORKImageChoiceAnswerFormat:
 	[x] ORKTextAnswerFormat:            "string", "text", "url"
 	[x] ORKTextChoiceAnswerFormat:      "choice", "choice-open" (!)
@@ -306,21 +305,21 @@ extension QuestionnaireItem {
 	[x] ORKTimeOfDayAnswerFormat:       "time"
 	[ ] ORKTimeIntervalAnswerFormat:
 	*/
-	func c3_asAnswerFormat(callback: @escaping ((ORKAnswerFormat?, Error?) -> Void)) {
+	func qk_asAnswerFormat(callback: @escaping ((ORKAnswerFormat?, Error?) -> Void)) {
 		let link = linkId ?? "<nil>"
 		if let type = type {
 			switch type {
 			case .boolean:	  callback(ORKAnswerFormat.booleanAnswerFormat(), nil)
 			case .decimal:	  callback(ORKAnswerFormat.decimalAnswerFormat(withUnit: nil), nil)
 			case .integer:
-				let minVals = c3_minValue()
-				let maxVals = c3_maxValue()
+				let minVals = qk_minValue()
+				let maxVals = qk_maxValue()
 				let minVal = minVals?.filter() { return $0.valueInteger != nil }.first?.valueInteger?.int
 				let maxVal = maxVals?.filter() { return $0.valueInteger != nil }.first?.valueInteger?.int
 				if let minVal = minVal, let maxVal = maxVal, maxVal > minVal {
 					let minDesc = minVals?.filter() { return $0.valueString != nil }.first?.valueString?.localized
 					let maxDesc = maxVals?.filter() { return $0.valueString != nil }.first?.valueString?.localized
-					let defVal = c3_defaultAnswer()?.valueInteger?.int ?? minVal
+					let defVal = qk_defaultAnswer()?.valueInteger?.int ?? minVal
 					let format = ORKAnswerFormat.scale(withMaximumValue: Int(maxVal), minimumValue: Int(minVal), defaultValue: Int(defVal),
 						step: 1, vertical: (maxVal - minVal > 5),
 						maximumValueDescription: maxDesc, minimumValueDescription: minDesc)
@@ -330,7 +329,7 @@ extension QuestionnaireItem {
 				else {
 					callback(ORKAnswerFormat.integerAnswerFormat(withUnit: nil), nil)
 				}
-			case .quantity:  callback(ORKAnswerFormat.decimalAnswerFormat(withUnit: c3_numericAnswerUnit()), nil)
+			case .quantity:  callback(ORKAnswerFormat.decimalAnswerFormat(withUnit: qk_numericAnswerUnit()), nil)
 			case .date:      callback(ORKAnswerFormat.dateAnswerFormat(), nil)
 			case .dateTime:  callback(ORKAnswerFormat.dateTime(), nil)
 			case .time:      callback(ORKAnswerFormat.timeOfDayAnswerFormat(), nil)
@@ -338,13 +337,13 @@ extension QuestionnaireItem {
 			case .text:      callback(ORKAnswerFormat.textAnswerFormat(), nil)
 			case .url:       callback(ORKAnswerFormat.textAnswerFormat(), nil)
 			case .choice:
-				c3_resolveAnswerChoices() { choices, error in
+				qk_resolveAnswerChoices() { choices, error in
 					if nil != error || nil == choices {
-						callback(nil, error ?? C3Error.questionnaireNoChoicesInChoiceQuestion(self))
+						callback(nil, error ?? QKError.questionnaireNoChoicesInChoiceQuestion(self))
 					}
 					else {
-						let multiStyle = self.c3_answerChoiceStyle()
-						if .multipleChoice != multiStyle, self.extensions(forURI: kC3ValuePickerFormatExtensionURL)?.first?.valueBoolean?.bool ?? false {
+						let multiStyle = self.qk_answerChoiceStyle()
+						if .multipleChoice != multiStyle, self.extensions(forURI: kQKValuePickerFormatExtensionURL)?.first?.valueBoolean?.bool ?? false {
 							callback(ORKAnswerFormat.valuePickerAnswerFormat(with: choices!), nil)
 						}
 						else {
@@ -353,12 +352,12 @@ extension QuestionnaireItem {
 					}
 				}
 			case .openChoice:
-				c3_resolveAnswerChoices() { choices, error in
+				qk_resolveAnswerChoices() { choices, error in
 					if nil != error || nil == choices {
-						callback(nil, error ?? C3Error.questionnaireNoChoicesInChoiceQuestion(self))
+						callback(nil, error ?? QKError.questionnaireNoChoicesInChoiceQuestion(self))
 					}
 					else {
-						callback(ORKAnswerFormat.choiceAnswerFormat(with: self.c3_answerChoiceStyle(), textChoices: choices!), nil)
+						callback(ORKAnswerFormat.choiceAnswerFormat(with: self.qk_answerChoiceStyle(), textChoices: choices!), nil)
 					}
 				}
 			//case .attachment:	callback(format: nil, error: nil)
@@ -368,7 +367,7 @@ extension QuestionnaireItem {
 			case .group:
 				callback(nil, nil)
 			default:
-				callback(nil, C3Error.questionnaireQuestionTypeUnknownToResearchKit(self))
+				callback(nil, QKError.questionnaireQuestionTypeUnknownToResearchKit(self))
 			}
 		}
 		else {
@@ -383,7 +382,7 @@ extension QuestionnaireItem {
 	The `value` property of the text choice is a combination of the coding system URL and the code, separated by
 	`kORKTextChoiceSystemSeparator` (a space). If no system URL is provided, "https://fhir.smalthealthit.org" is used.
 	*/
-	func c3_resolveAnswerChoices(callback: @escaping (([ORKTextChoice]?, Error?) -> Void)) {
+	func qk_resolveAnswerChoices(callback: @escaping (([ORKTextChoice]?, Error?) -> Void)) {
 		
 		// options are defined inline
 		if let optionList = answerOption {
@@ -415,7 +414,7 @@ extension QuestionnaireItem {
 				callback(choices, nil)
 			}
 			else {
-				callback(nil, C3Error.questionnaireNoChoicesInChoiceQuestion(self))
+				callback(nil, QKError.questionnaireNoChoicesInChoiceQuestion(self))
 			}
 		}
 		
@@ -458,12 +457,12 @@ extension QuestionnaireItem {
 					callback(choices, nil)
 				}
 				else {
-					callback(nil, C3Error.questionnaireNoChoicesInChoiceQuestion(self))
+					callback(nil, QKError.questionnaireNoChoicesInChoiceQuestion(self))
 				}
 			}
 		}
 		else {
-			callback(nil, C3Error.questionnaireNoChoicesInChoiceQuestion(self))
+			callback(nil, QKError.questionnaireNoChoicesInChoiceQuestion(self))
 		}
 	}
 	
@@ -471,8 +470,8 @@ extension QuestionnaireItem {
 	For `choice` type questions, inspect if the given question is single or multiple choice. Questions are multiple choice if "repeats" is
 	true and the "max-occurs" extension is either not defined or larger than 1.
 	*/
-	func c3_answerChoiceStyle() -> ORKChoiceAnswerStyle {
-		let multiple = (repeats?.bool ?? false) && ((c3_questionMaxOccurs() ?? 2) > 1)
+	func qk_answerChoiceStyle() -> ORKChoiceAnswerStyle {
+		let multiple = (repeats?.bool ?? false) && ((qk_questionMaxOccurs() ?? 2) > 1)
 		return multiple ? .multipleChoice : .singleChoice
 	}
 }

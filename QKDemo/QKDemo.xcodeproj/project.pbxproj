@@ -7,28 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B44A170121FE519F00A19D74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44A16FF21FE519F00A19D74 /* Main.storyboard */; };
 		B44A172221FE551600A19D74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B44A171821FE551600A19D74 /* Assets.xcassets */; };
 		B44A172321FE551600A19D74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44A171921FE551600A19D74 /* LaunchScreen.storyboard */; };
 		B44A172521FE551600A19D74 /* ResourceJsonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A171D21FE551600A19D74 /* ResourceJsonViewController.swift */; };
 		B44A172621FE551600A19D74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A171E21FE551600A19D74 /* AppDelegate.swift */; };
 		B44A172721FE551600A19D74 /* Bundle+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A171F21FE551600A19D74 /* Bundle+Utilities.swift */; };
 		B44A172821FE551600A19D74 /* QuestionnairesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A172021FE551600A19D74 /* QuestionnairesTableViewController.swift */; };
-		B450BD5E2333159C00BA3D89 /* QuestionnaireKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B450BD5C2333159C00BA3D89 /* QuestionnaireKit.framework */; };
-		B450BD5F2333159C00BA3D89 /* QuestionnaireKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B450BD5C2333159C00BA3D89 /* QuestionnaireKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B450BD602333159C00BA3D89 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B450BD5D2333159C00BA3D89 /* ResearchKit.framework */; };
-		B450BD612333159C00BA3D89 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B450BD5D2333159C00BA3D89 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B4B20F5D2447F9B50002C3C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44A171B21FE551600A19D74 /* Main.storyboard */; };
+		B4B20F5F2447FC200002C3C3 /* samples in Resources */ = {isa = PBXBuildFile; fileRef = B4B20F5E2447FC200002C3C3 /* samples */; };
+		B4B20F67244804F40002C3C3 /* QuestionnaireKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B20F642448028A0002C3C3 /* QuestionnaireKit.framework */; };
+		B4B20F68244804F40002C3C3 /* QuestionnaireKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4B20F642448028A0002C3C3 /* QuestionnaireKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B4B20F6E24489D520002C3C3 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B20F6D24489D510002C3C3 /* ResourceLoader.swift */; };
+		B4B20F742448FE3B0002C3C3 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B20F732448FE3B0002C3C3 /* ResearchKit.framework */; };
+		B4B20F752448FE3B0002C3C3 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B4B20F732448FE3B0002C3C3 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B450BD622333159C00BA3D89 /* Embed Frameworks */ = {
+		B4B20F69244804F40002C3C3 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B450BD612333159C00BA3D89 /* ResearchKit.framework in Embed Frameworks */,
-				B450BD5F2333159C00BA3D89 /* QuestionnaireKit.framework in Embed Frameworks */,
+				B4B20F752448FE3B0002C3C3 /* ResearchKit.framework in Embed Frameworks */,
+				B4B20F68244804F40002C3C3 /* QuestionnaireKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,11 +39,6 @@
 
 /* Begin PBXFileReference section */
 		B44A16F821FE519F00A19D74 /* QKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B44A16FB21FE519F00A19D74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B44A170021FE519F00A19D74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B44A170221FE51A100A19D74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B44A170521FE51A100A19D74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B44A170721FE51A100A19D74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B44A171821FE551600A19D74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B44A171A21FE551600A19D74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B44A171C21FE551600A19D74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,8 +47,10 @@
 		B44A171F21FE551600A19D74 /* Bundle+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Utilities.swift"; sourceTree = "<group>"; };
 		B44A172021FE551600A19D74 /* QuestionnairesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnairesTableViewController.swift; sourceTree = "<group>"; };
 		B44A172121FE551600A19D74 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B450BD5C2333159C00BA3D89 /* QuestionnaireKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QuestionnaireKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B450BD5D2333159C00BA3D89 /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4B20F5E2447FC200002C3C3 /* samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = samples; sourceTree = "<group>"; };
+		B4B20F642448028A0002C3C3 /* QuestionnaireKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QuestionnaireKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4B20F6D24489D510002C3C3 /* ResourceLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
+		B4B20F732448FE3B0002C3C3 /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B450BD602333159C00BA3D89 /* ResearchKit.framework in Frameworks */,
-				B450BD5E2333159C00BA3D89 /* QuestionnaireKit.framework in Frameworks */,
+				B4B20F742448FE3B0002C3C3 /* ResearchKit.framework in Frameworks */,
+				B4B20F67244804F40002C3C3 /* QuestionnaireKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,36 +86,33 @@
 		B44A16FA21FE519F00A19D74 /* QKDemo */ = {
 			isa = PBXGroup;
 			children = (
-				B44A171721FE551600A19D74 /* QKDemo */,
-				B44A16FB21FE519F00A19D74 /* AppDelegate.swift */,
-				B44A16FF21FE519F00A19D74 /* Main.storyboard */,
-				B44A170221FE51A100A19D74 /* Assets.xcassets */,
-				B44A170421FE51A100A19D74 /* LaunchScreen.storyboard */,
-				B44A170721FE51A100A19D74 /* Info.plist */,
-			);
-			path = QKDemo;
-			sourceTree = "<group>";
-		};
-		B44A171721FE551600A19D74 /* QKDemo */ = {
-			isa = PBXGroup;
-			children = (
+				B44A172121FE551600A19D74 /* Info.plist */,
 				B44A171821FE551600A19D74 /* Assets.xcassets */,
 				B44A171921FE551600A19D74 /* LaunchScreen.storyboard */,
 				B44A171B21FE551600A19D74 /* Main.storyboard */,
-				B44A171D21FE551600A19D74 /* ResourceJsonViewController.swift */,
-				B44A171E21FE551600A19D74 /* AppDelegate.swift */,
-				B44A171F21FE551600A19D74 /* Bundle+Utilities.swift */,
-				B44A172021FE551600A19D74 /* QuestionnairesTableViewController.swift */,
-				B44A172121FE551600A19D74 /* Info.plist */,
+				B44A171721FE551600A19D74 /* Sources */,
+				B4B20F5E2447FC200002C3C3 /* samples */,
 			);
 			name = QKDemo;
+			sourceTree = "<group>";
+		};
+		B44A171721FE551600A19D74 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B4B20F6D24489D510002C3C3 /* ResourceLoader.swift */,
+				B44A171E21FE551600A19D74 /* AppDelegate.swift */,
+				B44A172021FE551600A19D74 /* QuestionnairesTableViewController.swift */,
+				B44A171D21FE551600A19D74 /* ResourceJsonViewController.swift */,
+				B44A171F21FE551600A19D74 /* Bundle+Utilities.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		B450BD5B2333159C00BA3D89 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B450BD5C2333159C00BA3D89 /* QuestionnaireKit.framework */,
-				B450BD5D2333159C00BA3D89 /* ResearchKit.framework */,
+				B4B20F732448FE3B0002C3C3 /* ResearchKit.framework */,
+				B4B20F642448028A0002C3C3 /* QuestionnaireKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -131,7 +127,7 @@
 				B44A16F421FE519F00A19D74 /* Sources */,
 				B44A16F521FE519F00A19D74 /* Frameworks */,
 				B44A16F621FE519F00A19D74 /* Resources */,
-				B450BD622333159C00BA3D89 /* Embed Frameworks */,
+				B4B20F69244804F40002C3C3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -185,9 +181,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4B20F5F2447FC200002C3C3 /* samples in Resources */,
+				B4B20F5D2447F9B50002C3C3 /* Main.storyboard in Resources */,
 				B44A172221FE551600A19D74 /* Assets.xcassets in Resources */,
 				B44A172321FE551600A19D74 /* LaunchScreen.storyboard in Resources */,
-				B44A170121FE519F00A19D74 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +197,7 @@
 			files = (
 				B44A172621FE551600A19D74 /* AppDelegate.swift in Sources */,
 				B44A172521FE551600A19D74 /* ResourceJsonViewController.swift in Sources */,
+				B4B20F6E24489D520002C3C3 /* ResourceLoader.swift in Sources */,
 				B44A172721FE551600A19D74 /* Bundle+Utilities.swift in Sources */,
 				B44A172821FE551600A19D74 /* QuestionnairesTableViewController.swift in Sources */,
 			);
@@ -208,22 +206,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B44A16FF21FE519F00A19D74 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B44A170021FE519F00A19D74 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B44A170421FE51A100A19D74 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B44A170521FE51A100A19D74 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		B44A171921FE551600A19D74 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,7 +276,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -349,7 +331,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -363,15 +345,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = QKDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = solutions.clinicalcloud.QKDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -381,15 +367,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = QKDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = solutions.clinicalcloud.QKDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

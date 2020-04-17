@@ -1,0 +1,403 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "questionnaire-example-sampler",
+  "meta": {
+    "versionId": "18",
+    "lastUpdated": "2018-07-27T20:36:40.396+00:00",
+    "profile": [
+      "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/q"
+    ]
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><b>Argonaut Questionnaire Sampler</b><hr /><span style=\"color: gray;\">Publisher:</span> Argonaut Project\r\n</div>"
+  },
+  "url": "http://fhir.org/guides/argonaut-questionnaire/Questionnaire/questionnaire-example-sampler",
+  "identifier": [
+    {
+      "system": "http://acme.org/q-identifiers",
+      "value": "questionnaire-example-sampler"
+    }
+  ],
+  "version": "0.0.0",
+  "title": "Argonaut Questionnaire Sampler",
+  "status": "draft",
+  "date": "2018-07-26",
+  "publisher": "Argonaut Project",
+  "useContext": [
+    {
+      "code": {
+        "system": "http://hl7.org/fhir/usage-context-type",
+        "code": "task",
+        "display": "Workflow Task"
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://acme.org",
+            "code": "example",
+            "display": "Example of Use"
+          }
+        ]
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "US",
+          "display": "United States of America"
+        }
+      ]
+    }
+  ],
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "http://argonautwiki.hl7.org"
+        }
+      ]
+    }
+  ],
+  "copyright": "You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.",
+  "code": [
+    {
+      "system": "http://acme.org",
+      "code": "foo",
+      "display": "Argonaut Questionnaire Sampler"
+    }
+  ],
+  "subjectType": [
+    "Patient"
+  ],
+  "item": [
+    {
+      "linkId": "g1",
+      "text": "Header Text",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "linkId": "g1.d",
+          "text": "The Argonaut Questionnaire Sampler is designed to show all the question types that can be used in the Argonaut Questionnaire Project:\n\n1 boolean\n2 decimal\n3 integer\n4 dateDate\n5 dateTime\n6 timeTime\n7 string\n8 textText\n9 urlUrl\n10 choice\n11 open-choice\n12 quantity\n",
+          "type": "display",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "g2",
+      "prefix": "1. ",
+      "text": "boolean",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+              "valueDecimal": 17
+            }
+          ],
+          "linkId": "g2.q1",
+          "text": "Check the box if the following statement is true.  The average air speed velocity of a laden European swallow is greater than a laden African swallow.",
+          "type": "boolean",
+          "required": true,
+          "repeats": false
+        }
+      ]
+    },
+    {
+      "linkId": "g3",
+      "prefix": "2. ",
+      "text": "decimal",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+              "valueDecimal": 7
+            }
+          ],
+          "linkId": "g3.q1",
+          "text": "What is the average air speed velocity of a laden swallow in m/sec?",
+          "type": "decimal",
+          "required": true,
+          "repeats": false
+        }
+      ]
+    },
+    {
+      "linkId": "g4",
+      "prefix": "3. ",
+      "text": "integer",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+              "valueDecimal": 3
+            }
+          ],
+          "linkId": "g4.q1",
+          "text": "What is the average air speed velocity of a laden swallow in m/sec?",
+          "type": "integer",
+          "required": true,
+          "repeats": false
+        }
+      ]
+    },
+    {
+      "linkId": "g5",
+      "prefix": "4. ",
+      "text": "date",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+              "valueDecimal": 27
+            }
+          ],
+          "linkId": "g5.q1",
+          "text": "If a laden swallow left Camelot on 7/5/2018 what day would it reach the Castle Anthrax?",
+          "type": "date",
+          "required": true,
+          "repeats": false
+        }
+      ]
+    },
+    {
+      "linkId": "g6",
+      "prefix": "5. ",
+      "text": "dateTime",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+              "valueDecimal": 3
+            }
+          ],
+          "linkId": "g6.q1",
+          "text": "If a laden swallow left Camelot on 7/5/2018 and noon when would it reach Castle Anthrax?",
+          "type": "dateTime",
+          "required": true,
+          "repeats": false
+        }
+      ]
+    },
+    {
+      "linkId": "g7",
+      "prefix": "6. ",
+      "text": "time",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+              "valueDecimal": 8
+            }
+          ],
+          "linkId": "g7.q1",
+          "text": "If a laden swallow left Camelot at noon what time would it reach Castle Anthrax?",
+          "type": "time",
+          "required": true,
+          "repeats": false
+        }
+      ]
+    },
+    {
+      "linkId": "g8",
+      "prefix": "7. ",
+      "text": "string",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+              "valueDecimal": 1
+            }
+          ],
+          "linkId": "g8.q1",
+          "text": "Describe how to estimate the average air speed velocity of a laden swallow in 20 words or less.",
+          "type": "string",
+          "required": true,
+          "repeats": false
+        }
+      ]
+    },
+    {
+      "linkId": "g9",
+      "prefix": "8. ",
+      "text": "text",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+              "valueDecimal": 0
+            }
+          ],
+          "linkId": "g9.q1",
+          "text": "Describe in detal how to estimate the average air speed velocity of a laden swallow. Please cite your sources and give examples.",
+          "type": "text",
+          "required": true,
+          "repeats": false
+        }
+      ]
+    },
+    {
+      "linkId": "g10",
+      "prefix": "9. ",
+      "text": "url",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+              "valueDecimal": 11
+            }
+          ],
+          "linkId": "g10.q1",
+          "text": "Provide a link to a video clip where the average air speed velocity of a laden swallow question is discussed.",
+          "type": "url",
+          "required": true,
+          "repeats": false
+        }
+      ]
+    },
+    {
+      "linkId": "g11",
+      "prefix": "10. ",
+      "text": "choice",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "linkId": "g11.q1",
+          "text": "What is the average air speed velocity of a laden swallow in m/sec?",
+          "type": "choice",
+          "required": true,
+          "repeats": false,
+          "option": [
+            {
+              "extension": [
+                {
+                  "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueString": "10"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+                  "valueDecimal": 43
+                }
+              ],
+              "valueString": "11"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueString": "12"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "g12",
+      "prefix": "11. ",
+      "text": "open-choice",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "linkId": "g12.q1",
+          "text": "What is the average air speed velocity of a laden swallow in m/sec?",
+          "type": "open-choice",
+          "required": true,
+          "repeats": false,
+          "option": [
+            {
+              "extension": [
+                {
+                  "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueString": "10"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+                  "valueDecimal": 43
+                }
+              ],
+              "valueString": "11"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueString": "12"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "g13",
+      "prefix": "12. ",
+      "text": "quantity",
+      "type": "group",
+      "required": true,
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://fhir.org/guides/argonaut-questionnaire/StructureDefinition/extension-score",
+              "valueDecimal": 3
+            }
+          ],
+          "linkId": "g13.q1",
+          "text": "What is the average air speed velocity of a laden swallow - please provide the units?",
+          "type": "quantity",
+          "required": true,
+          "repeats": false
+        }
+      ]
+    }
+  ]
+}

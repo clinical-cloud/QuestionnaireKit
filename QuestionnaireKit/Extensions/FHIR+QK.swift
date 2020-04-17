@@ -1,6 +1,5 @@
 //
-//  FHIR+C3-PRO.swift
-//  C3PRO
+//  FHIR+QK.swift
 //
 //  Created by Pascal Pfiffner on 7/29/15.
 //  Copyright © 2015 Boston Children's Hospital. All rights reserved.
@@ -29,7 +28,7 @@ extension Element {
 	
 	- returns: A list of `Extension` resources for the _minValue_ extension
 	*/
-	final func c3_minValue() -> [Extension]? {
+	final func qk_minValue() -> [Extension]? {
 		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/minValue")
 	}
 	
@@ -39,7 +38,7 @@ extension Element {
 	
 	- returns: A list of `Extension` resources for the _maxValue_ extension
 	*/
-	final func c3_maxValue() -> [Extension]? {
+	final func qk_maxValue() -> [Extension]? {
 		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/maxValue")
 	}
 }
