@@ -79,7 +79,6 @@
 		B44A16AF21F9497A00A19D74 /* QuestionnaireKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuestionnaireKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B44A16B421F9497A00A19D74 /* QuestionnaireKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireKitTests.swift; sourceTree = "<group>"; };
 		B44A16B621F9497A00A19D74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B44A16C421F94A1E00A19D74 /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B44A16C721F94A5B00A19D74 /* FHIR+QK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIR+QK.swift"; sourceTree = "<group>"; };
 		B44A16C821F94A5B00A19D74 /* Foundation+QK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+QK.swift"; sourceTree = "<group>"; };
 		B44A16CA21F94A5B00A19D74 /* ConditionalOrderedTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionalOrderedTask.swift; sourceTree = "<group>"; };
@@ -166,7 +165,6 @@
 		B44A16C121F94A1E00A19D74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B44A16C421F94A1E00A19D74 /* SMART.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
