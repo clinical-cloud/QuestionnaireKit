@@ -5,14 +5,14 @@
 //
 
 import UIKit
-import SMART
+import FHIR
 import QuestionnaireKit
 
 class QuestionnairesTableViewController: UITableViewController {
 	
 	var endpointURL: String? = nil
 
-	var smart: Client?
+//	var smart: Client?
 	
 	var questionnaires: [Questionnaire]?
 	
@@ -85,7 +85,6 @@ class QuestionnairesTableViewController: UITableViewController {
 	@objc private func loadQuestionnaires() {
 		self.questionnaires = []
 		loadLocalQuestionnaires()
-		loadRemoteQuestionnaires()
 	}
 	
 	private func loadLocalQuestionnaires() {
@@ -108,39 +107,6 @@ class QuestionnairesTableViewController: UITableViewController {
 		}
 	}
 		
-	private func loadRemoteQuestionnaires() {
-		guard let endpoint = endpointURL, let base = URL(string: endpoint) else {
-			return
-		}
-		markBusy()
-		smart = Client(baseURL: base, settings: [:])
-		smart?.ready() { error in
-			if let error = error {
-				self.show(error: error, title: "SMART client error")
-				self.markReady()
-				return
-			}
-			
-			let queryArgs = [String: String]()
-			let search = FHIRSearch(type: Questionnaire.self, query: queryArgs as Any)
-			search.perform(self.smart!.server) { bundle, error in
-				if nil != error {
-					DispatchQueue.main.async() {
-						self.show(error: error!)
-					}
-				}
-				else {
-					self.questionnaires = bundle?.entries(ofType: Questionnaire.self, typeName: Questionnaire.resourceType) as? [Questionnaire]
-				}
-				
-				DispatchQueue.main.async() {
-					self.tableView.reloadData()
-					self.markReady()
-				}
-			}
-		}
-	}
-	
 	private func showQuestionnaire(_ questionnaire: Questionnaire) {
 		controller = QuestionnaireController(questionnaire: questionnaire)
 		controller?.whenCompleted = { viewController, response in

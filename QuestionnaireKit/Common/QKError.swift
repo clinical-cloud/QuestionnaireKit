@@ -17,8 +17,8 @@
 //  limitations under the License.
 //
 
+import FHIR
 import Foundation
-import SMART
 
 
 /// The FHIR version used by this instance of the framework.

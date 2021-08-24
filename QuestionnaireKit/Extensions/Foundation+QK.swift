@@ -20,6 +20,19 @@
 import Foundation
 
 
+/**
+Helper function to ensure that the callback is executed on the main thread.
+*/
+public func callOnMainThread(_ callback: (() -> Void)) {
+	if Thread.isMainThread {
+		callback()
+	}
+	else {
+		DispatchQueue.main.sync(execute: callback)
+	}
+}
+
+
 extension String {
 	
 	/**

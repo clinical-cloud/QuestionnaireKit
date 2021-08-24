@@ -6,10 +6,10 @@
 //  Copyright © 2016 SMART Platforms. All rights reserved.
 //
 
-import SMART
+import FHIR
 
 
-extension SMART.Bundle {
+extension FHIR.Bundle {
 	
 	/**
 	Loop over the Bundle's `entry` and return all resources of the desired type.

@@ -18,7 +18,7 @@
 //
 
 import ResearchKit
-import SMART
+import FHIR
 
 
 /**

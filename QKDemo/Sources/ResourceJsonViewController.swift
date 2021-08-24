@@ -4,8 +4,8 @@
 //  Created by David Carlson on 3/15/18.
 //
 
+import FHIR
 import UIKit
-import SMART
 
 class ResourceJsonViewController: UIViewController {
 	

@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import SMART
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

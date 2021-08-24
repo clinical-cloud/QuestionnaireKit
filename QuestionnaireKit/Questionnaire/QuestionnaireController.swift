@@ -19,7 +19,7 @@
 
 import Foundation
 import ResearchKit
-import SMART
+import FHIR
 
 
 /**
@@ -46,7 +46,7 @@ open class QuestionnaireController: NSObject, ORKTaskViewControllerDelegate {
 	public final var whenCancelledOrFailed: ((ORKTaskViewController, Error?) -> Void)?
 	
 	/// The logger to use, if any.
-	open var logger: OAuth2Logger?
+	open var logger: QKLogger?
 	
 	
 	/**

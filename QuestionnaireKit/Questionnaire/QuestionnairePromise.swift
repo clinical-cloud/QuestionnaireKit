@@ -18,7 +18,7 @@
 //
 
 import Foundation
-import SMART
+import FHIR
 import ResearchKit
 
 

@@ -2,30 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "OAuth2",
-        "repositoryURL": "https://github.com/p2/OAuth2",
-        "state": {
-          "branch": null,
-          "revision": "e4deb6cf83c9f43a74cd2deb757af0a381af9635",
-          "version": "5.1.0"
-        }
-      },
-      {
         "package": "FHIR",
-        "repositoryURL": "https://github.com/smart-on-fhir/Swift-FHIR",
+        "repositoryURL": "https://github.com/smart-on-fhir/Swift-FHIR.git",
         "state": {
           "branch": null,
-          "revision": "626ffd15ebbf6de6aa7e130b2708f47211216d62",
-          "version": "4.2.0"
-        }
-      },
-      {
-        "package": "SMART",
-        "repositoryURL": "https://github.com/smart-on-fhir/Swift-SMART.git",
-        "state": {
-          "branch": null,
-          "revision": "f5d283079e2e5cd12bd0076f05886d19bbd5e125",
-          "version": "4.2.0"
+          "revision": "b68fb5d6c8137de4a06894e683dc1a726a832907",
+          "version": "4.2.1"
         }
       }
     ]

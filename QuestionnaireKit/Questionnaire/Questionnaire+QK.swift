@@ -17,7 +17,7 @@
 //  limitations under the License.
 //
 
-import SMART
+import FHIR
 import ResearchKit
 
 
