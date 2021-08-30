@@ -18,7 +18,7 @@
 //
 
 import ResearchKit
-import FHIR
+import ModelsR4
 
 
 /**
@@ -49,7 +49,7 @@ extension ORKTaskResult {
 //		let questionnaire = Reference()
 //		questionnaire.reference = FHIRString(identifier)
 		
-		let answer = QuestionnaireResponse(status: .completed)
+		let answer = QuestionnaireResponse(status: QuestionnaireResponseStatus.completed.asPrimitive())
 		//TODO need the source Questionnaire canonical URI
 //		answer.questionnaire = questionnaireURI
 		answer.item = groups
@@ -76,14 +76,14 @@ extension ORKStepResult {
 			for result in results {
 				if let result = result as? ORKQuestionResult {
 					if let question = task?.step?(withIdentifier: result.identifier) as? ORKQuestionStep, let answers = result.qk_responseItemAnswers(from: question) {
-						var response = QuestionnaireResponseItem(linkId: result.identifier.fhir_string)
+						var response = QuestionnaireResponseItem(linkId: result.identifier.asFHIRStringPrimitive())
 						response.answer = answers
 						
 						// wrap into parent items - will dedupe by linkId later
 						if let conditional = question as? ConditionalStep {
 							var parentIds = conditional.linkIds
 							while let parentId = parentIds.popLast() {
-								let parent = QuestionnaireResponseItem(linkId: parentId.fhir_string)
+								let parent = QuestionnaireResponseItem(linkId: parentId.asFHIRStringPrimitive())
 								parent.item = [response]
 								response = parent
 							}
@@ -201,9 +201,8 @@ extension ORKChoiceQuestionResult {
 			let splat = choice.split() { $0 == kORKTextChoiceSystemSeparator }.map() { String($0) }
 			let system = splat[0]
 			let code = (splat.count > 1) ? splat[1..<splat.endIndex].joined(separator: String(kORKTextChoiceSystemSeparator)) : kORKTextChoiceMissingCodeCode
-			answer.valueCoding = Coding()
-			answer.valueCoding!.system = FHIRURL(system)
-			answer.valueCoding!.code = FHIRString(code)
+			let coding = Coding(code: code.asFHIRStringPrimitive(), system: system.asFHIRURIPrimitive())
+			answer.value = QuestionnaireResponseItemAnswer.ValueX.coding(coding)
 			answers.append(answer)
 		}
 		return answers
@@ -224,11 +223,11 @@ extension ORKTextQuestionResult {
 			return nil
 		}
 		let answer = QuestionnaireResponseItemAnswer()
-		if let fhir = ofFHIRType, "url" == fhir {
-			answer.valueUri = FHIRURL(text)
+		if let fhir = ofFHIRType, "url" == fhir, let uri = text.asFHIRURIPrimitive() {
+			answer.value = QuestionnaireResponseItemAnswer.ValueX.uri(uri)
 		}
 		else {
-			answer.valueString = FHIRString(text)
+			answer.value = QuestionnaireResponseItemAnswer.ValueX.string(text.asFHIRStringPrimitive())
 		}
 		return [answer]
 	}
@@ -249,15 +248,14 @@ extension ORKNumericQuestionResult {
 		}
 		let answer = QuestionnaireResponseItemAnswer()
 		if let fhir = ofFHIRType, "quantity" == fhir {
-			answer.valueQuantity = Quantity()
-			answer.valueQuantity!.value = FHIRDecimal(numeric.decimalValue)
-			answer.valueQuantity!.unit = unit?.fhir_string
+			let quantity = Quantity(unit: unit?.asFHIRStringPrimitive(), value: numeric.doubleValue.asFHIRDecimalPrimitive())
+			answer.value = QuestionnaireResponseItemAnswer.ValueX.quantity(quantity)
 		}
 		else if let fhir = ofFHIRType, "integer" == fhir {
-			answer.valueInteger = FHIRInteger(numeric.int32Value)
+			answer.value = QuestionnaireResponseItemAnswer.ValueX.integer(numeric.intValue.asFHIRIntegerPrimitive())
 		}
 		else {
-			answer.valueDecimal = FHIRDecimal(numeric.decimalValue)
+			answer.value = QuestionnaireResponseItemAnswer.ValueX.decimal(numeric.doubleValue.asFHIRDecimalPrimitive())
 		}
 		return [answer]
 	}
@@ -277,7 +275,7 @@ extension ORKScaleQuestionResult {
 			return nil
 		}
 		let answer = QuestionnaireResponseItemAnswer()
-		answer.valueDecimal = FHIRDecimal(numeric.decimalValue)
+		answer.value = QuestionnaireResponseItemAnswer.ValueX.decimal(numeric.doubleValue.asFHIRDecimalPrimitive())
 		return [answer]
 	}
 }
@@ -296,7 +294,7 @@ extension ORKBooleanQuestionResult {
 			return nil
 		}
 		let answer = QuestionnaireResponseItemAnswer()
-		answer.valueBoolean = FHIRBool(boolean)
+		answer.value = QuestionnaireResponseItemAnswer.ValueX.boolean(boolean.asPrimitive())
 		return [answer]
 	}
 }
@@ -315,7 +313,8 @@ extension ORKTimeOfDayQuestionResult {
 			return nil
 		}
 		let answer = QuestionnaireResponseItemAnswer()
-		answer.valueTime = FHIRTime(hour: UInt8(components.hour ?? 0), minute: UInt8(components.minute ?? 0), second: 0.0)
+		let fhirTime = FHIRTime(hour: UInt8(components.hour ?? 0), minute: UInt8(components.minute ?? 0), second: 0.0)
+		answer.value = QuestionnaireResponseItemAnswer.ValueX.time(fhirTime.asPrimitive())
 		return [answer]
 	}
 }
@@ -358,20 +357,21 @@ extension ORKDateQuestionResult {
 		let answer = QuestionnaireResponseItemAnswer()
 		switch ofFHIRType ?? "dateTime" {
 		case "date":
-			answer.valueDate = date.fhir_asDate()
+			if let fhirDate = try? FHIRDate(date: date) {
+				answer.value = QuestionnaireResponseItemAnswer.ValueX.date(fhirDate.asPrimitive())
+			}
 		case "dateTime":
-			let dateTime = date.fhir_asDateTime()
 //			if let tz = timeZone {
 //				dateTime.timeZone = tz			// TODO: reported NSDate is in UTC, convert to the given time zone
 //			}
-			answer.valueDateTime = dateTime
+			if let fhirDateTime = try? DateTime(date: date) {
+				answer.value = QuestionnaireResponseItemAnswer.ValueX.dateTime(fhirDateTime.asPrimitive())
+			}
 		default:
 			qk_warn("unknown date-time FHIR type “\(ofFHIRType!)”, treating as dateTime")
-			let dateTime = date.fhir_asDateTime()
-//			if let tz = timeZone {
-//				dateTime.timeZone = tz
-//			}
-			answer.valueDateTime = dateTime
+			if let fhirDateTime = try? DateTime(date: date) {
+				answer.value = QuestionnaireResponseItemAnswer.ValueX.dateTime(fhirDateTime.asPrimitive())
+			}
 		}
 		return [answer]
 	}

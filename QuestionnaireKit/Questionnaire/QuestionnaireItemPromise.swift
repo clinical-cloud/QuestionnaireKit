@@ -18,14 +18,13 @@
 //
 
 import Foundation
-import FHIR
+import ModelsR4
 import ResearchKit
 
 
 let kORKTextChoiceSystemSeparator: Character = " "
 let kORKTextChoiceDefaultSystem = "https://fhir.smalthealthit.org"
 let kORKTextChoiceMissingCodeCode = "⚠️"
-let kQKValuePickerFormatExtensionURL = "http://fhir-registry.smarthealthit.org/StructureDefinition/value-picker"
 
 
 /**
@@ -96,9 +95,9 @@ class QuestionnaireItemPromise: QuestionnairePromiseProto {
 			// we know the answer format, so this is a question, create a conditional step
 			else if let fmt = format {
 				let step = ConditionalQuestionStep(identifier: self.linkId, linkIds: self.linkIds, title: title, answer: fmt)
-				step.fhirType = self.item.type?.rawValue
+				step.fhirType = self.item.type.value?.rawValue
 				step.text = text
-				step.isOptional = !(self.item.required ?? false)
+				step.isOptional = !(self.item.required?.value?.bool ?? false)
 				thisStep = step
 			}
 			else if let error = error {
@@ -160,8 +159,8 @@ class QuestionnaireItemPromise: QuestionnairePromiseProto {
 		var promise: QuestionnaireItemPromise? = self
 		while title == nil, promise != nil {
 			title = promise?.item.qk_questionTitle()
-			if nil == title, promise?.item.type == .group {
-				title = promise?.item.text?.string
+			if nil == title, promise?.item.type.value == .group {
+				title = promise?.item.text?.value?.string
 			}
 			promise = promise?.parent
 		}
@@ -173,7 +172,7 @@ class QuestionnaireItemPromise: QuestionnairePromiseProto {
 	// MARK: - Properties
 	
 	var linkId: String {
-		return item.linkId?.string ?? UUID().uuidString
+		return item.linkId.value?.string ?? UUID().uuidString
 	}
 	
 	/// Returns an array of all linkIds of the parents down to the receiver.
@@ -208,10 +207,10 @@ extension QuestionnaireItem {
 	- returns: string for text field
 	*/
 	func qk_bestText() -> String? {
-		let cDisplay = code?.filter() { return nil != $0.display }.map() { return $0.display!.localized }
-		let cCodes = code?.filter() { return nil != $0.code }.map() { return $0.code!.string }		// TODO: can these be localized?
+		let cDisplay = code?.compactMap() { return $0.display?.value?.string.qk_localized }
+		let cCodes = code?.compactMap() { return $0.code?.value?.string }		// TODO: can these be localized?
 		
-		var txt = text?.localized
+		var txt = text?.value?.string.qk_localized
 		
 		if nil == txt {
 			txt = qk_questionInstruction() ?? qk_questionHelpText()		// even if the title is still nil, we won't want to populate the title with help text
@@ -232,12 +231,12 @@ extension QuestionnaireItem {
 	- returns: A tuple of strings for title and text
 	*/
 	func qk_bestTitleAndText() -> (String?, String?) {
-		let cDisplay = code?.filter() { return nil != $0.display }.map() { return $0.display!.localized }
-		let cCodes = code?.filter() { return nil != $0.code }.map() { return $0.code!.string }		// TODO: can these be localized?
+		let cDisplay = code?.compactMap() { return $0.display?.value?.string.qk_localized }
+		let cCodes = code?.compactMap() { return $0.code?.value?.string }		// TODO: can these be localized?
 		
 //		var ttl = cDisplay?.first ?? cCodes?.first
 		let ttl = qk_questionTitle()
-		var txt = text?.localized
+		var txt = text?.value?.string.qk_localized
 		
 		if nil == txt {
 			txt = qk_questionInstruction() ?? qk_questionHelpText()		// even if the title is still nil, we won't want to populate the title with help text
@@ -251,39 +250,6 @@ extension QuestionnaireItem {
 		
 		return (ttl?.qk_stripMultipleSpaces(), txt?.qk_stripMultipleSpaces())
 	}
-	
-	func qk_questionTitle() -> String? {
-		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-title")?.first?.valueString?.localized
-	}
-	
-	func qk_questionHidden() -> Bool? {
-		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden")?.first?.valueBoolean?.bool
-	}
-	
-	func qk_questionMinOccurs() -> Int? {
-		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs")?.first?.valueInteger?.int
-	}
-	
-	func qk_questionMaxOccurs() -> Int? {
-		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs")?.first?.valueInteger?.int
-	}
-	
-	func qk_questionInstruction() -> String? {
-		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-instruction")?.first?.valueString?.localized
-	}
-	
-	func qk_questionHelpText() -> String? {
-		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-help")?.first?.valueString?.localized
-	}
-	
-	func qk_numericAnswerUnit() -> String? {
-		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-units")?.first?.valueString?.localized
-	}
-	
-	func qk_defaultAnswer() -> Extension? {
-		return extensions(forURI: "http://hl7.org/fhir/StructureDefinition/questionnaire-defaultValue")?.first
-	}
-	
 	
 	/**
 	Determine ResearchKit's answer format for the question type.
@@ -306,20 +272,20 @@ extension QuestionnaireItem {
 	[ ] ORKTimeIntervalAnswerFormat:
 	*/
 	func qk_asAnswerFormat(callback: @escaping ((ORKAnswerFormat?, Error?) -> Void)) {
-		let link = linkId ?? "<nil>"
-		if let type = type {
-			switch type {
+		if let itemType = type.value {
+			switch itemType {
 			case .boolean:	  callback(ORKAnswerFormat.booleanAnswerFormat(), nil)
 			case .decimal:	  callback(ORKAnswerFormat.decimalAnswerFormat(withUnit: nil), nil)
 			case .integer:
-				let minVals = qk_minValue()
-				let maxVals = qk_maxValue()
-				let minVal = minVals?.filter() { return $0.valueInteger != nil }.first?.valueInteger?.int
-				let maxVal = maxVals?.filter() { return $0.valueInteger != nil }.first?.valueInteger?.int
+				let minVal = qk_minValueInt()
+				let maxVal = qk_maxValueInt()
 				if let minVal = minVal, let maxVal = maxVal, maxVal > minVal {
-					let minDesc = minVals?.filter() { return $0.valueString != nil }.first?.valueString?.localized
-					let maxDesc = maxVals?.filter() { return $0.valueString != nil }.first?.valueString?.localized
-					let defVal = qk_defaultAnswer()?.valueInteger?.int ?? minVal
+					let minDesc = qk_minValueString()?.qk_localized
+					let maxDesc = qk_maxValueString()?.qk_localized
+					
+					// TOOD default value in R4?
+//					let defVal = qk_defaultAnswer()?.valueInteger?.int ?? minVal
+					let defVal =  minVal
 					let format = ORKAnswerFormat.scale(withMaximumValue: Int(maxVal), minimumValue: Int(minVal), defaultValue: Int(defVal),
 						step: 1, vertical: (maxVal - minVal > 5),
 						maximumValueDescription: maxDesc, minimumValueDescription: minDesc)
@@ -329,7 +295,7 @@ extension QuestionnaireItem {
 				else {
 					callback(ORKAnswerFormat.integerAnswerFormat(withUnit: nil), nil)
 				}
-			case .quantity:  callback(ORKAnswerFormat.decimalAnswerFormat(withUnit: qk_numericAnswerUnit()), nil)
+			case .quantity:  callback(ORKAnswerFormat.decimalAnswerFormat(withUnit: qk_numericAnswerUnit()?.code?.value?.string), nil)
 			case .date:      callback(ORKAnswerFormat.dateAnswerFormat(), nil)
 			case .dateTime:  callback(ORKAnswerFormat.dateTime(), nil)
 			case .time:      callback(ORKAnswerFormat.timeOfDayAnswerFormat(), nil)
@@ -343,7 +309,7 @@ extension QuestionnaireItem {
 					}
 					else {
 						let multiStyle = self.qk_answerChoiceStyle()
-						if .multipleChoice != multiStyle, self.extensions(forURI: kQKValuePickerFormatExtensionURL)?.first?.valueBoolean?.bool ?? false {
+						if .multipleChoice != multiStyle, self.qk_valuePickerFormat() ?? false {
 							callback(ORKAnswerFormat.valuePickerAnswerFormat(with: choices!), nil)
 						}
 						else {
@@ -361,7 +327,7 @@ extension QuestionnaireItem {
 					}
 				}
 			//case .attachment:	callback(format: nil, error: nil)
-			//case .reference:		callback(format: nil, error: nil)
+			//case .reference: callback(format: nil, error: nil)
 			case .display:
 				callback(nil, nil)
 			case .group:
@@ -369,10 +335,6 @@ extension QuestionnaireItem {
 			default:
 				callback(nil, QKError.questionnaireQuestionTypeUnknownToResearchKit(self))
 			}
-		}
-		else {
-			NSLog("Question «\(String(describing: text))» does not have an answer type, assuming text answer [linkId: \(link)]")
-			callback(ORKAnswerFormat.textAnswerFormat(), nil)
 		}
 	}
 	
@@ -393,18 +355,18 @@ extension QuestionnaireItem {
 			var choices = [ORKTextChoice]()
 			
 			for optionItem in optionList {
-				if let valueString = optionItem.valueString {
-					let text = ORKTextChoice(text: valueString.string, value: valueString.string as NSCoding & NSCopying & NSObjectProtocol)
+				if case .string(let valueString) = optionItem.value, let value = valueString.value?.string {
+					let text = ORKTextChoice(text: value, value: value as NSCoding & NSCopying & NSObjectProtocol)
 					choices.append(text)
 				}
-				else if let valueCoding = optionItem.valueCoding {
+				else if case .coding(let valueCoding) = optionItem.value {
 					// TODO Implement a Coding: Codeable class to use as value and record into response.
 					// 		Also use this for value set options.
 					
-					let system = valueCoding.system?.absoluteString ?? kORKTextChoiceDefaultSystem
-					let code = valueCoding.code?.string ?? kORKTextChoiceMissingCodeCode
+					let system = valueCoding.system?.value?.url.absoluteString ?? kORKTextChoiceDefaultSystem
+					let code = valueCoding.code?.value?.string ?? kORKTextChoiceMissingCodeCode
 					let valueString = "\(system)\(kORKTextChoiceSystemSeparator)\(code)"
-					let text = ORKTextChoice(text: valueCoding.display?.string ?? code, value: valueString as NSCoding & NSCopying & NSObjectProtocol)
+					let text = ORKTextChoice(text: valueCoding.display?.value?.string ?? code, value: valueString as NSCoding & NSCopying & NSObjectProtocol)
 					choices.append(text)
 				}
 			}
@@ -420,6 +382,10 @@ extension QuestionnaireItem {
 		
 		// options are a referenced ValueSet
 		else if let options = answerValueSet {
+			QKDebugLogger().warn(msg: "Error: Cannot resolve answer ValueSet reference: \(options.value ?? "unknown")")
+			callback(nil, QKError.questionnaireNoChoicesInChoiceQuestion(self))
+			
+			/*
 			options.resolve(ValueSet.self) { valueSet in
 				var choices = [ORKTextChoice]()
 				
@@ -460,6 +426,7 @@ extension QuestionnaireItem {
 					callback(nil, QKError.questionnaireNoChoicesInChoiceQuestion(self))
 				}
 			}
+			*/
 		}
 		else {
 			callback(nil, QKError.questionnaireNoChoicesInChoiceQuestion(self))
@@ -471,7 +438,7 @@ extension QuestionnaireItem {
 	true and the "max-occurs" extension is either not defined or larger than 1.
 	*/
 	func qk_answerChoiceStyle() -> ORKChoiceAnswerStyle {
-		let multiple = (repeats?.bool ?? false) && ((qk_questionMaxOccurs() ?? 2) > 1)
+		let multiple = (repeats?.value?.bool ?? false) && ((qk_questionMaxOccurs() ?? 2) > 1)
 		return multiple ? .multipleChoice : .singleChoice
 	}
 }

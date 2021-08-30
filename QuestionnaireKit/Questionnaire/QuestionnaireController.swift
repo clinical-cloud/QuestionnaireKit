@@ -19,7 +19,7 @@
 
 import Foundation
 import ResearchKit
-import FHIR
+import ModelsR4
 
 
 /**

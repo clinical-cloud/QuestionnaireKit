@@ -4,7 +4,7 @@
 //  Created by David Carlson on 3/15/18.
 //
 
-import FHIR
+import ModelsR4
 import UIKit
 
 class ResourceJsonViewController: UIViewController {
@@ -22,18 +22,23 @@ class ResourceJsonViewController: UIViewController {
 		super.viewWillAppear(animated)
 		configureView()
 	}
-
+	
+	private func resourceString(_ resource: Resource) throws -> String? {
+		let encoder = JSONEncoder()
+		encoder.outputFormatting = [.sortedKeys, .prettyPrinted, .withoutEscapingSlashes]
+		let encoded = try encoder.encode(resource)
+		return String(data: encoded, encoding: .utf8)
+	}
+	
 	func configureView() {
 		guard let label = detailDescriptionLabel else {
 			return
 		}
 		if let detail = resource {
-			self.title? = type(of: detail).resourceType
+			self.title? = type(of: detail).resourceType.rawValue
 			
 			do {
-				let data = try JSONSerialization.data(withJSONObject: detail.asJSON(), options: .prettyPrinted)
-				let string = String(data: data, encoding: String.Encoding.utf8)
-				label.text = string ?? "Unable to generate JSON"
+				label.text = try resourceString(detail) ?? "Unable to generate JSON"
 			}
 			catch let error {
 				label.text = "\(error)"

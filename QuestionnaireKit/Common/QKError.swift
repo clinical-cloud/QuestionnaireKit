@@ -17,7 +17,7 @@
 //  limitations under the License.
 //
 
-import FHIR
+import ModelsR4
 import Foundation
 
 
@@ -132,9 +132,9 @@ public enum QKError: Error, CustomStringConvertible {
 		case .questionnaireInvalidNoTopLevelItem:
 			return "Invalid questionnaire, does not contain a top level item"
 		case .questionnaireQuestionTypeUnknownToResearchKit(let question):
-			return "Failed to map question type “\(question.type?.rawValue ?? "<nil>")” to ResearchKit answer format [linkId: \(question.linkId ?? "<nil>")]"
+			return "Failed to map question type “\(question.type)” to ResearchKit answer format [linkId: \(question.linkId)]"
 		case .questionnaireNoChoicesInChoiceQuestion(let question):
-			return "There are no choices in question “\(question.text ?? "")” [linkId: \(question.linkId ?? "<nil>")]"
+			return "There are no choices in question “\(question.text ?? "")” [linkId: \(question.linkId)]"
 		case .questionnaireEnableWhenIncomplete(let reason):
 			return "item.enableWhen is incomplete: \(reason)"
 		case .questionnaireFinishedWithError:

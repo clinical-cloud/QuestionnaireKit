@@ -10,7 +10,7 @@
 		B44A16B021F9497A00A19D74 /* QuestionnaireKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44A16A621F9497A00A19D74 /* QuestionnaireKit.framework */; };
 		B44A16B521F9497A00A19D74 /* QuestionnaireKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16B421F9497A00A19D74 /* QuestionnaireKitTests.swift */; };
 		B44A16B721F9497A00A19D74 /* QuestionnaireKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B44A16A921F9497A00A19D74 /* QuestionnaireKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B44A16D621F94A5B00A19D74 /* FHIR+QK.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16C721F94A5B00A19D74 /* FHIR+QK.swift */; };
+		B44A16D621F94A5B00A19D74 /* QuestionnaireItem+QK.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16C721F94A5B00A19D74 /* QuestionnaireItem+QK.swift */; };
 		B44A16D721F94A5B00A19D74 /* Foundation+QK.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16C821F94A5B00A19D74 /* Foundation+QK.swift */; };
 		B44A16D821F94A5B00A19D74 /* ConditionalOrderedTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16CA21F94A5B00A19D74 /* ConditionalOrderedTask.swift */; };
 		B44A16D921F94A5B00A19D74 /* ConditionalStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16CB21F94A5B00A19D74 /* ConditionalStep.swift */; };
@@ -24,8 +24,8 @@
 		B44A16E221F94A5B00A19D74 /* String+QK.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16D521F94A5B00A19D74 /* String+QK.swift */; };
 		B4A5C1AF24DB01C300936C60 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B20F142447EFE70002C3C3 /* ResearchKit.framework */; };
 		B4A9450526B5F10F0074EB75 /* QKLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A9450426B5F10F0074EB75 /* QKLogger.swift */; };
-		B4A9450F26B5F4C20074EB75 /* FHIR in Frameworks */ = {isa = PBXBuildFile; productRef = B4A9450E26B5F4C20074EB75 /* FHIR */; };
 		B4B20F0A2446AB0F0002C3C3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B4B20F092446AB0E0002C3C3 /* README.md */; };
+		B4ED151E26D5B90500F93319 /* ModelsR4 in Frameworks */ = {isa = PBXBuildFile; productRef = B4ED151D26D5B90500F93319 /* ModelsR4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +79,7 @@
 		B44A16AF21F9497A00A19D74 /* QuestionnaireKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuestionnaireKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B44A16B421F9497A00A19D74 /* QuestionnaireKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireKitTests.swift; sourceTree = "<group>"; };
 		B44A16B621F9497A00A19D74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B44A16C721F94A5B00A19D74 /* FHIR+QK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIR+QK.swift"; sourceTree = "<group>"; };
+		B44A16C721F94A5B00A19D74 /* QuestionnaireItem+QK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuestionnaireItem+QK.swift"; sourceTree = "<group>"; };
 		B44A16C821F94A5B00A19D74 /* Foundation+QK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+QK.swift"; sourceTree = "<group>"; };
 		B44A16CA21F94A5B00A19D74 /* ConditionalOrderedTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionalOrderedTask.swift; sourceTree = "<group>"; };
 		B44A16CB21F94A5B00A19D74 /* ConditionalStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionalStep.swift; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4A5C1AF24DB01C300936C60 /* ResearchKit.framework in Frameworks */,
-				B4A9450F26B5F4C20074EB75 /* FHIR in Frameworks */,
+				B4ED151E26D5B90500F93319 /* ModelsR4 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +172,7 @@
 		B44A16C621F94A5B00A19D74 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B44A16C721F94A5B00A19D74 /* FHIR+QK.swift */,
+				B44A16C721F94A5B00A19D74 /* QuestionnaireItem+QK.swift */,
 				B44A16C821F94A5B00A19D74 /* Foundation+QK.swift */,
 			);
 			path = Extensions;
@@ -249,7 +249,7 @@
 			);
 			name = QuestionnaireKit;
 			packageProductDependencies = (
-				B4A9450E26B5F4C20074EB75 /* FHIR */,
+				B4ED151D26D5B90500F93319 /* ModelsR4 */,
 			);
 			productName = QuestionnaireKit;
 			productReference = B44A16A621F9497A00A19D74 /* QuestionnaireKit.framework */;
@@ -303,7 +303,7 @@
 			);
 			mainGroup = B44A169C21F9497A00A19D74;
 			packageReferences = (
-				B4A9450D26B5F4C20074EB75 /* XCRemoteSwiftPackageReference "Swift-FHIR" */,
+				B4ED151C26D5B90500F93319 /* XCRemoteSwiftPackageReference "FHIRModels" */,
 			);
 			productRefGroup = B44A16A721F9497A00A19D74 /* Products */;
 			projectDirPath = "";
@@ -381,7 +381,7 @@
 				B44A16D721F94A5B00A19D74 /* Foundation+QK.swift in Sources */,
 				B44A16DF21F94A5B00A19D74 /* QuestionnaireController.swift in Sources */,
 				B44A16DB21F94A5B00A19D74 /* Questionnaire+QK.swift in Sources */,
-				B44A16D621F94A5B00A19D74 /* FHIR+QK.swift in Sources */,
+				B44A16D621F94A5B00A19D74 /* QuestionnaireItem+QK.swift in Sources */,
 				B44A16E021F94A5B00A19D74 /* QuestionnairePromise.swift in Sources */,
 				B44A16D821F94A5B00A19D74 /* ConditionalOrderedTask.swift in Sources */,
 				B44A16DE21F94A5B00A19D74 /* QuestionnaireItemPromise.swift in Sources */,
@@ -657,21 +657,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B4A9450D26B5F4C20074EB75 /* XCRemoteSwiftPackageReference "Swift-FHIR" */ = {
+		B4ED151C26D5B90500F93319 /* XCRemoteSwiftPackageReference "FHIRModels" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/smart-on-fhir/Swift-FHIR.git";
+			repositoryURL = "https://github.com/apple/FHIRModels.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.1;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B4A9450E26B5F4C20074EB75 /* FHIR */ = {
+		B4ED151D26D5B90500F93319 /* ModelsR4 */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B4A9450D26B5F4C20074EB75 /* XCRemoteSwiftPackageReference "Swift-FHIR" */;
-			productName = FHIR;
+			package = B4ED151C26D5B90500F93319 /* XCRemoteSwiftPackageReference "FHIRModels" */;
+			productName = ModelsR4;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

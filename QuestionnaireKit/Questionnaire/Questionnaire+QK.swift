@@ -17,7 +17,7 @@
 //  limitations under the License.
 //
 
-import FHIR
+import ModelsR4
 import ResearchKit
 
 
@@ -53,7 +53,7 @@ extension QuestionnaireItemEnableWhen {
 	- returns: A String representing the step identifier the receiver applies to
 	*/
 	func qk_questionIdentifier() throws -> String {
-		guard let questionIdentifier = question?.string else {
+		guard let questionIdentifier = question.value?.string else {
 			throw QKError.questionnaireEnableWhenIncomplete("\(self) has no `question` to refer to")
 		}
 		return questionIdentifier
@@ -72,20 +72,20 @@ extension QuestionnaireItemEnableWhen {
 	*/
 	func qk_answerResult(_ questionIdentifier: String) throws -> ORKQuestionResult {
 		let questionIdentifier = try qk_questionIdentifier()
-		if let answer = answerBoolean?.bool {
+		if case .boolean(let fhirBoolean) = answer, let answerBoolean = fhirBoolean.value?.bool {
 			let result = ORKBooleanQuestionResult(identifier: questionIdentifier)
-			result.answer = answer
+			result.answer = answerBoolean
 			return result
 		}
-		if let answer = answerString?.string {
+		if case .string(let fhirString) = answer, let answerString = fhirString.value?.string {
 			let result = ORKTextQuestionResult(identifier: questionIdentifier)
-			result.answer = answer
+			result.answer = answerString
 			return result
 		}
-		if let answer = answerCoding {
-			if let code = answer.code {
+		if case .coding(let answerCoding) = answer {
+			if let code = answerCoding.code {
 				let result = ORKChoiceQuestionResult(identifier: questionIdentifier)
-				let system = answer.system?.absoluteString ?? kORKTextChoiceDefaultSystem
+				let system = answerCoding.system?.value?.url.absoluteString ?? kORKTextChoiceDefaultSystem
 				let value = "\(system)\(kORKTextChoiceSystemSeparator)\(code)"
 				result.answer = [value]
 				return result
@@ -135,7 +135,7 @@ extension QuestionnaireResponseItem {
 		var itemDict = [String: QuestionnaireResponseItem]()
 		var finalItems = [QuestionnaireResponseItem]()
 		for item in items {
-			guard let thisLinkId = item.linkId?.string else {   // is invalid without linkId anyway
+			guard let thisLinkId = item.linkId.value?.string else {   // is invalid without linkId anyway
 				continue
 			}
 			if let existing = itemDict[thisLinkId] {

@@ -18,7 +18,7 @@
 //
 
 import Foundation
-import FHIR
+import ModelsR4
 import ResearchKit
 
 
@@ -71,12 +71,13 @@ open class QuestionnairePromise: QuestionnairePromiseProto {
 		
 		// wrap into our own root item since there may be multiple top level items in the questionnaire, and we don't want to implement
 		// looping over them here
-		let topItem = QuestionnaireItem(linkId: FHIRString("{root}"), type: .group)
+		let topItem = QuestionnaireItem(linkId: "{root}", type: QuestionnaireItemType.group.asPrimitive())
 		topItem.item = questionnaire.item
 		
 		let promise = QuestionnaireItemPromise(item: topItem)
 		promise.fulfill(requiring: parentRequirements) { errors in
-			let identifier = self.questionnaire.id?.string ?? (self.questionnaire.identifier?.first?.value?.string ?? "questionnaire-task")
+			let identifier = self.questionnaire.id?.value?.string
+				?? (self.questionnaire.identifier?.first?.value?.value?.string ?? "questionnaire-task")
 			if let steps = promise.steps {
 				self.steps = steps
 				self.task = ConditionalOrderedTask(identifier: identifier, steps: steps)

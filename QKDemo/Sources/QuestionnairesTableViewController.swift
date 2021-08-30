@@ -5,7 +5,7 @@
 //
 
 import UIKit
-import FHIR
+import ModelsR4
 import QuestionnaireKit
 
 class QuestionnairesTableViewController: UITableViewController {
@@ -44,8 +44,8 @@ class QuestionnairesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionnaireCell", for: indexPath)
 
 		if let questionnaire = questionnaires?[indexPath.row] {
-			cell.textLabel?.text = questionnaire.title?.string
-			cell.detailTextLabel?.text = questionnaire.id?.string
+			cell.textLabel?.text = questionnaire.title?.value?.string
+			cell.detailTextLabel?.text = questionnaire.id?.value?.string
 		}
 
         return cell
@@ -84,10 +84,6 @@ class QuestionnairesTableViewController: UITableViewController {
 
 	@objc private func loadQuestionnaires() {
 		self.questionnaires = []
-		loadLocalQuestionnaires()
-	}
-	
-	private func loadLocalQuestionnaires() {
 		let questionnaireFiles = [
 			"questionnaire-44249-1",
 			"questionnaire-62199-5",
@@ -97,14 +93,22 @@ class QuestionnairesTableViewController: UITableViewController {
 		
 		for fileName in questionnaireFiles {
 			do {
-				if let questionnaire = try ResourceLoader.loadResource(type: Questionnaire.self, filename: fileName, directory: "samples") {
-					self.questionnaires?.append(questionnaire)
-				}
+				let q = try getQuestionnaire(withID: fileName)
+				self.questionnaires?.append(q)
 			}
 			catch {
 				print("Error loading sample data file: \(fileName)")
 			}
 		}
+	}
+	
+	private func getQuestionnaire(withID id: String) throws -> Questionnaire {
+		guard let fileURL = Bundle.main.url(forResource: "samples/\(id)", withExtension: "json")
+		else {
+			throw QKError.bundleFileNotFound(id)
+		}
+		let data = try! Data(contentsOf: fileURL)
+		return try JSONDecoder().decode(Questionnaire.self, from: data)
 	}
 		
 	private func showQuestionnaire(_ questionnaire: Questionnaire) {

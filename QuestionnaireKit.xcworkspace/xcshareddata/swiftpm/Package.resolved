@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "FHIR",
-        "repositoryURL": "https://github.com/smart-on-fhir/Swift-FHIR.git",
+        "package": "FHIRModels",
+        "repositoryURL": "https://github.com/apple/FHIRModels.git",
         "state": {
-          "branch": null,
-          "revision": "b68fb5d6c8137de4a06894e683dc1a726a832907",
-          "version": "4.2.1"
+          "branch": "main",
+          "revision": "c91e5bb74397136f79656bebdfda76a523d3e88c",
+          "version": null
         }
       }
     ]
