@@ -28,16 +28,15 @@ This model implements the `ORKTaskViewControllerDelegate` protocol and holds on 
 // Let's assume you have a Questionnaire "Survey.json" in your app bundle
 // You can use other means, such as `Questionnaire.read(id:server:callback:)`,
 // to read a questionnaire from a FHIR server.
-let questionnaire = NSBundle.mainBundle().fhir_bundledResource("<# Survey #>")
+let fileURL = Bundle.main.url(forResource: "Survey", withExtension: "json")
+let data = try! Data(contentsOf: fileURL)
+let questionnaire = JSONDecoder().decode(Questionnaire.self, from: data)
 let controller = QuestionnaireController(questionnaire: questionnaire)
 controller.whenCompleted = { viewController, answers in
     viewController.dismissViewControllerAnimated(true, completion: nil)
 	// `answers` is a FHIR "QuestionnaireResponse" resource if not nil
     if let answers = answers {
-        // e.g. send to a SMART server:
-        answers.create(<# smart.server #>) { error in
-            // check if `error` is not nil and handle
-        }
+        // e.g. send to a SMART on FHIR server
     }
 }
 
@@ -73,18 +72,18 @@ Otherwise the group will be transparent, only its questions will show up.
 
 _Note: the following referenced example json files are not yet included in this repo, but will be added soon_
 
-There's a small sample Questionnaire [Questionnaire-choices.json](../../examples/Questionnaire/Questionnaire-choices.json) that has a `choice` and some `boolean` type questions.
+There's a small sample Questionnaire [Questionnaire-choices.json](examples/Questionnaire-choices.json) that has a `choice` and some `boolean` type questions.
 A _choice_ question becomes a _multiple choice_ question when its `repeats` flag is set to true.
 You can use the `max-occurs` extension to limit the number of choices.
 
 Notice how you can skip questions 1 and 2 but not 4 and 4 in the sample questionnaire.
 The sample also uses `item.enableWhen` to conditionally show the 4th question based on the answer to the 3rd question.
 
-The respective response resource with sample answers is shown in [examples/QuestionnaireResponse/QuestionnaireResponse-choices.json](../../examples/QuestionnaireResponse/QuestionnaireResponse-choices.json).
+The respective response resource with sample answers is shown in [examples/QuestionnaireResponse/QuestionnaireResponse-choices.json](examples/QuestionnaireResponse-choices.json).
 
 ### Text and Values, Slider for Integers
 
-The [Questionnaire-textvalues.json](../../examples/Questionnaire/Questionnaire-textvalues.json) example contains samples for textual and numerical input.
+The [Questionnaire-textvalues.json](examples/Questionnaire-textvalues.json) example contains samples for textual and numerical input.
 
 The following will show the title “FHIR Likening”, a smaller instruction text and a slider going from 0-10, with 8 pre-selected.
 Sliders with more than 5 steps will render vertically instead of horizontally.
@@ -126,5 +125,5 @@ If no default value is specified, the minimum value will be pre-selected.
 
 ### Date and Time
 
-The [Questionnaire-dates.json](../../examples/Questionnaire/Questionnaire-dates.json) example contains samples for date and time input.
+The [Questionnaire-dates.json](examples/Questionnaire-dates.json) example contains samples for date and time input.
 

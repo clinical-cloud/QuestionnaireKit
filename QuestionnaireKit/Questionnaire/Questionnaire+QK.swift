@@ -1,8 +1,11 @@
 //
-//  QuestionnaireExtensions.swift
+//  Questionnaire+QK.swift
 //
 //  Created by Pascal Pfiffner on 5/20/15.
 //  Copyright © 2015 Boston Children's Hospital. All rights reserved.
+//
+//  Modified by Dave Carlson on 08/30/2021.
+//  Copyright © 2021 Clinical Cloud Solutions, LLC. All rights reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.

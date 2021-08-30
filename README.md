@@ -3,12 +3,12 @@ Swift framework for presenting FHIR Questionnaires in your iOS app using Apple R
 
 QuestionnaireKit is currently compatible with: 
 * HL7 FHIR R4
-* iOS 13 and newer
-* Swift 5.0
-* XCode 11.4
+* iOS 14 and newer
+* Swift 5.5
+* XCode 13.0
 
 Dependencies include:
-* [**SMART on FHIR**](https://github.com/smart-on-fhir/Swift-SMART) via Swift Package Manager (SPM)
+* [**FHIRModels**](https://github.com/apple/FHIRModels) via Swift Package Manager (SPM)
 * Apple ResearchKit version 2.1, integrated as a git submodule (does not yet support SPM)
 
 This framework was extracted from the [C3-Pro](http://c3-pro.org), [c3-pro-ios-framework](https://github.com/C3-PRO/c3-pro-ios-framework) 
