@@ -99,10 +99,11 @@ class QuestionnairesTableViewController: UITableViewController {
 	@objc private func loadQuestionnaires() {
 		self.questionnaires = []
 		let questionnaireFiles = [
-			"questionnaire-44249-1",
-			"questionnaire-62199-5",
-			"questionnaire-sdoh-screening",
 			"questionnaire-example-sampler",
+			"Questionnaire-PHQ4",
+			"Questionnaire-PHQ4-grouped",
+			"Questionnaire-PHQ9",
+			"Questionnaire-SDOHCC-QuestionnairePRAPARE",
 		]
 		
 		for fileName in questionnaireFiles {
