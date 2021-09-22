@@ -220,3 +220,113 @@ class ConditionalInstructionStep: ORKInstructionStep, ConditionalStep {
 	}
 }
 
+
+/**
+A conditional form step, to be used in the conditional ordered task.
+*/
+class ConditionalFormStep: ORKFormStep, ConditionalStep {
+    
+    /// An array of linkIds of the parent groups, used to preserve hierarchy.
+    var linkIds = [String]()
+    
+    /// Requirements to fulfil for the step to show up, if any.
+    var requirements: [ResultRequirement]?
+    
+    /**
+    Designated initializer.
+    
+    - parameter identifier: The step's identifier
+    - parameter linkIds: The identifier of the groups this step is nested in, if any
+    - parameter title: The step's title
+    - parameter text: The instruction text
+    */
+    init(identifier: String, linkIds ids: [String], title ttl: String?, text txt: String?) {
+        super.init(identifier: identifier)
+        linkIds = ids
+        title = ttl
+        text = txt
+    }
+    
+    
+    // MARK: - NSCopying
+    
+    override func copy(with zone: NSZone? = nil) -> Any {
+        super.copy(with: zone)
+        return self
+    }
+    
+    
+    // MARK: - NSSecureCoding
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        // TODO: how to use [ResultRequirement] as first argument to decodeObject()?
+        requirements = aDecoder.decodeObject(of: nil, forKey: "requirements") as? [ResultRequirement]
+    }
+    
+    override func encode(with aCoder: NSCoder) {
+        super.encode(with: aCoder)
+        aCoder.encode(requirements, forKey: "requirements")
+    }
+}
+
+/**
+A conditional form step, to be used in the conditional ordered task.
+*/
+class ConditionalFormItem: ORKFormItem, ConditionalStep {
+    
+    /// The original "type", specified in the FHIR Questionnaire.
+    var fhirType: String?
+    
+    /// An array of linkIds of the parent groups, used to preserve hierarchy.
+    var linkIds = [String]()
+    
+    /// Requirements to fulfil for the step to show up, if any.
+    var requirements: [ResultRequirement]?
+    
+    /**
+    Designated initializer.
+    
+    - parameter identifier: The step's identifier
+    - parameter linkIds: The identifier of the groups this step is nested in, if any
+    - parameter title: The step's title
+    - parameter text: The instruction text
+    */
+    init(identifier: String, linkIds ids: [String], text txt: String?, answer: ORKAnswerFormat) {
+        super.init(identifier: identifier, text: txt ?? "", detailText: nil, learnMoreItem: nil, showsProgress: true,
+                   answerFormat: answer, tagText: nil, optional: true)
+        linkIds = ids
+    }
+    
+    
+    // MARK: - NSCopying
+    
+    override func copy(with zone: NSZone? = nil) -> Any {
+        let copy = ORKFormItem(identifier: identifier, text: text, detailText: detailText, learnMoreItem: learnMoreItem, showsProgress: showsProgress,
+                               answerFormat: answerFormat?.copy() as? ORKAnswerFormat, tagText: tagText, optional: isOptional)
+        return copy
+        
+        /*
+         The following throws a runtime exception:
+         
+         QuestionnaireKit/ConditionalStep.swift:276: Fatal error: Use of unimplemented initializer 'init(identifier:text:answerFormat:)' for class 'QuestionnaireKit.ConditionalFormItem'
+         */
+//        super.copy(with: zone)
+//        return self
+    }
+    
+    
+    // MARK: - NSSecureCoding
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        // TODO: how to use [ResultRequirement] as first argument to decodeObject()?
+        requirements = aDecoder.decodeObject(of: nil, forKey: "requirements") as? [ResultRequirement]
+    }
+    
+    override func encode(with aCoder: NSCoder) {
+        super.encode(with: aCoder)
+        aCoder.encode(requirements, forKey: "requirements")
+    }
+}
+

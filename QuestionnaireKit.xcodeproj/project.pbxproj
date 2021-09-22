@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B42E91D126F79392001C05FE /* QuestionnaireItem+QK.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42E91D026F79392001C05FE /* QuestionnaireItem+QK.swift */; };
 		B44A16B021F9497A00A19D74 /* QuestionnaireKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44A16A621F9497A00A19D74 /* QuestionnaireKit.framework */; };
 		B44A16B521F9497A00A19D74 /* QuestionnaireKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16B421F9497A00A19D74 /* QuestionnaireKitTests.swift */; };
 		B44A16B721F9497A00A19D74 /* QuestionnaireKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B44A16A921F9497A00A19D74 /* QuestionnaireKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B44A16D621F94A5B00A19D74 /* QuestionnaireItem+QK.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16C721F94A5B00A19D74 /* QuestionnaireItem+QK.swift */; };
+		B44A16D621F94A5B00A19D74 /* QuestionnaireItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16C721F94A5B00A19D74 /* QuestionnaireItem+Extensions.swift */; };
 		B44A16D721F94A5B00A19D74 /* Foundation+QK.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16C821F94A5B00A19D74 /* Foundation+QK.swift */; };
 		B44A16D821F94A5B00A19D74 /* ConditionalOrderedTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16CA21F94A5B00A19D74 /* ConditionalOrderedTask.swift */; };
 		B44A16D921F94A5B00A19D74 /* ConditionalStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16CB21F94A5B00A19D74 /* ConditionalStep.swift */; };
@@ -22,7 +23,8 @@
 		B44A16E021F94A5B00A19D74 /* QuestionnairePromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16D221F94A5B00A19D74 /* QuestionnairePromise.swift */; };
 		B44A16E121F94A5B00A19D74 /* QKError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16D421F94A5B00A19D74 /* QKError.swift */; };
 		B44A16E221F94A5B00A19D74 /* String+QK.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A16D521F94A5B00A19D74 /* String+QK.swift */; };
-		B4A5C1AF24DB01C300936C60 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B20F142447EFE70002C3C3 /* ResearchKit.framework */; };
+		B498218C26F934AC00A6523E /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B498218226F932AD00A6523E /* ResearchKit.framework */; platformFilter = ios; };
+		B498218D26F934AC00A6523E /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B498218226F932AD00A6523E /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B4A9450526B5F10F0074EB75 /* QKLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A9450426B5F10F0074EB75 /* QKLogger.swift */; };
 		B4B20F0A2446AB0F0002C3C3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B4B20F092446AB0E0002C3C3 /* README.md */; };
 		B4ED151E26D5B90500F93319 /* ModelsR4 in Frameworks */ = {isa = PBXBuildFile; productRef = B4ED151D26D5B90500F93319 /* ModelsR4 */; };
@@ -36,16 +38,16 @@
 			remoteGlobalIDString = B44A16A521F9497A00A19D74;
 			remoteInfo = QuestionnaireKit;
 		};
-		B4B20F132447EFE70002C3C3 /* PBXContainerItemProxy */ = {
+		B498218126F932AD00A6523E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B4B20F0D2447EFE70002C3C3 /* ResearchKit.xcodeproj */;
+			containerPortal = B498217B26F932AD00A6523E /* ResearchKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = B183A5951A8535D100C76870;
 			remoteInfo = ResearchKit;
 		};
-		B4B20F152447EFE70002C3C3 /* PBXContainerItemProxy */ = {
+		B498218326F932AD00A6523E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B4B20F0D2447EFE70002C3C3 /* ResearchKit.xcodeproj */;
+			containerPortal = B498217B26F932AD00A6523E /* ResearchKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 86CC8E9A1AC09332001CCD89;
 			remoteInfo = ResearchKitTests;
@@ -66,6 +68,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B498218D26F934AC00A6523E /* ResearchKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,13 +76,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B42E91D026F79392001C05FE /* QuestionnaireItem+QK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestionnaireItem+QK.swift"; sourceTree = "<group>"; };
 		B44A16A621F9497A00A19D74 /* QuestionnaireKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuestionnaireKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B44A16A921F9497A00A19D74 /* QuestionnaireKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuestionnaireKit.h; sourceTree = "<group>"; };
 		B44A16AA21F9497A00A19D74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B44A16AF21F9497A00A19D74 /* QuestionnaireKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuestionnaireKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B44A16B421F9497A00A19D74 /* QuestionnaireKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireKitTests.swift; sourceTree = "<group>"; };
 		B44A16B621F9497A00A19D74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B44A16C721F94A5B00A19D74 /* QuestionnaireItem+QK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuestionnaireItem+QK.swift"; sourceTree = "<group>"; };
+		B44A16C721F94A5B00A19D74 /* QuestionnaireItem+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuestionnaireItem+Extensions.swift"; sourceTree = "<group>"; };
 		B44A16C821F94A5B00A19D74 /* Foundation+QK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+QK.swift"; sourceTree = "<group>"; };
 		B44A16CA21F94A5B00A19D74 /* ConditionalOrderedTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionalOrderedTask.swift; sourceTree = "<group>"; };
 		B44A16CB21F94A5B00A19D74 /* ConditionalStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionalStep.swift; sourceTree = "<group>"; };
@@ -91,9 +95,9 @@
 		B44A16D221F94A5B00A19D74 /* QuestionnairePromise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnairePromise.swift; sourceTree = "<group>"; };
 		B44A16D421F94A5B00A19D74 /* QKError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QKError.swift; sourceTree = "<group>"; };
 		B44A16D521F94A5B00A19D74 /* String+QK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+QK.swift"; sourceTree = "<group>"; };
+		B498217B26F932AD00A6523E /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ../../Apple/ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
 		B4A9450426B5F10F0074EB75 /* QKLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QKLogger.swift; sourceTree = "<group>"; };
 		B4B20F092446AB0E0002C3C3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		B4B20F0D2447EFE70002C3C3 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
 		B4B20F572447F53B0002C3C3 /* QKDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QKDemo.xcodeproj; path = QKDemo/QKDemo.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4A5C1AF24DB01C300936C60 /* ResearchKit.framework in Frameworks */,
+				B498218C26F934AC00A6523E /* ResearchKit.framework in Frameworks */,
 				B4ED151E26D5B90500F93319 /* ModelsR4 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,7 +132,7 @@
 				B44A16A721F9497A00A19D74 /* Products */,
 				B44A16C121F94A1E00A19D74 /* Frameworks */,
 				B4B20F572447F53B0002C3C3 /* QKDemo.xcodeproj */,
-				B4B20F0D2447EFE70002C3C3 /* ResearchKit.xcodeproj */,
+				B498217B26F932AD00A6523E /* ResearchKit.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,7 +176,7 @@
 		B44A16C621F94A5B00A19D74 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B44A16C721F94A5B00A19D74 /* QuestionnaireItem+QK.swift */,
+				B44A16C721F94A5B00A19D74 /* QuestionnaireItem+Extensions.swift */,
 				B44A16C821F94A5B00A19D74 /* Foundation+QK.swift */,
 			);
 			path = Extensions;
@@ -185,6 +189,7 @@
 				B44A16CB21F94A5B00A19D74 /* ConditionalStep.swift */,
 				B44A16CC21F94A5B00A19D74 /* ORKTaskResult+FHIR.swift */,
 				B44A16CD21F94A5B00A19D74 /* Questionnaire+QK.swift */,
+				B42E91D026F79392001C05FE /* QuestionnaireItem+QK.swift */,
 				B44A16D021F94A5B00A19D74 /* QuestionnaireItemPromise.swift */,
 				B44A16D121F94A5B00A19D74 /* QuestionnaireController.swift */,
 				B44A16D221F94A5B00A19D74 /* QuestionnairePromise.swift */,
@@ -202,11 +207,11 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		B4B20F0E2447EFE70002C3C3 /* Products */ = {
+		B498217C26F932AD00A6523E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B4B20F142447EFE70002C3C3 /* ResearchKit.framework */,
-				B4B20F162447EFE70002C3C3 /* ResearchKitTests.xctest */,
+				B498218226F932AD00A6523E /* ResearchKit.framework */,
+				B498218426F932AD00A6523E /* ResearchKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -313,8 +318,8 @@
 					ProjectRef = B4B20F572447F53B0002C3C3 /* QKDemo.xcodeproj */;
 				},
 				{
-					ProductGroup = B4B20F0E2447EFE70002C3C3 /* Products */;
-					ProjectRef = B4B20F0D2447EFE70002C3C3 /* ResearchKit.xcodeproj */;
+					ProductGroup = B498217C26F932AD00A6523E /* Products */;
+					ProjectRef = B498217B26F932AD00A6523E /* ResearchKit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -326,18 +331,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		B4B20F142447EFE70002C3C3 /* ResearchKit.framework */ = {
+		B498218226F932AD00A6523E /* ResearchKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ResearchKit.framework;
-			remoteRef = B4B20F132447EFE70002C3C3 /* PBXContainerItemProxy */;
+			remoteRef = B498218126F932AD00A6523E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B4B20F162447EFE70002C3C3 /* ResearchKitTests.xctest */ = {
+		B498218426F932AD00A6523E /* ResearchKitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ResearchKitTests.xctest;
-			remoteRef = B4B20F152447EFE70002C3C3 /* PBXContainerItemProxy */;
+			remoteRef = B498218326F932AD00A6523E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		B4B20F5C2447F53B0002C3C3 /* QKDemo.app */ = {
@@ -374,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B44A16E121F94A5B00A19D74 /* QKError.swift in Sources */,
+				B42E91D126F79392001C05FE /* QuestionnaireItem+QK.swift in Sources */,
 				B44A16DA21F94A5B00A19D74 /* ORKTaskResult+FHIR.swift in Sources */,
 				B44A16E221F94A5B00A19D74 /* String+QK.swift in Sources */,
 				B44A16D921F94A5B00A19D74 /* ConditionalStep.swift in Sources */,
@@ -381,7 +387,7 @@
 				B44A16D721F94A5B00A19D74 /* Foundation+QK.swift in Sources */,
 				B44A16DF21F94A5B00A19D74 /* QuestionnaireController.swift in Sources */,
 				B44A16DB21F94A5B00A19D74 /* Questionnaire+QK.swift in Sources */,
-				B44A16D621F94A5B00A19D74 /* QuestionnaireItem+QK.swift in Sources */,
+				B44A16D621F94A5B00A19D74 /* QuestionnaireItem+Extensions.swift in Sources */,
 				B44A16E021F94A5B00A19D74 /* QuestionnairePromise.swift in Sources */,
 				B44A16D821F94A5B00A19D74 /* ConditionalOrderedTask.swift in Sources */,
 				B44A16DE21F94A5B00A19D74 /* QuestionnaireItemPromise.swift in Sources */,

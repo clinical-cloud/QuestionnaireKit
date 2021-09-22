@@ -142,7 +142,14 @@ extension QuestionnaireItem {
 		}
 		return nil
 	}
-	
+    
+    func qk_questionHelpButton() -> Bool? {
+        if case .codeableConcept(let concept) = extensions(for: "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl").first?.value {
+            return concept.coding?.first?.code == "help"
+        }
+        return nil
+    }
+    
 	func qk_questionInstruction() -> String? {
 		if case .string(let value) = extensions(for: "http://hl7.org/fhir/StructureDefinition/questionnaire-instruction").first?.value {
 			return value.value?.string.qk_localized
