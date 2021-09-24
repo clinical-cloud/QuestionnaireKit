@@ -172,8 +172,7 @@ extension QuestionnaireItem {
     /**
     For `choice` type questions, retrieves the possible answers and returns them as ORKTextChoice in the callback.
     
-    The `value` property of the text choice is a combination of the coding system URL and the code, separated by
-    `kORKTextChoiceSystemSeparator` (a space). If no system URL is provided, "https://fhir.smalthealthit.org" is used.
+    The `value` property of the text choice is a JSON serialization of Coding, or a String value.
     */
     func qk_resolveAnswerChoices(callback: @escaping (([ORKTextChoice]?, Error?) -> Void)) {
         
@@ -191,13 +190,12 @@ extension QuestionnaireItem {
                     choices.append(text)
                 }
                 else if case .coding(let valueCoding) = optionItem.value {
-                    // TODO Implement a Coding: Codeable class to use as value and record into response.
-                    //         Also use this for value set options.
-                    
-                    let system = valueCoding.system?.value?.url.absoluteString ?? kORKTextChoiceDefaultSystem
+                    var valueString: String?
+                    if let data = try? JSONEncoder().encode(valueCoding) {
+                        valueString = String(data: data, encoding: .utf8)!
+                    }
                     let code = valueCoding.code?.value?.string ?? kORKTextChoiceMissingCodeCode
-                    let valueString = "\(system)\(kORKTextChoiceSystemSeparator)\(code)"
-                    let text = ORKTextChoice(text: valueCoding.display?.value?.string ?? code, value: valueString as NSCoding & NSCopying & NSObjectProtocol)
+                    let text = ORKTextChoice(text: valueCoding.display?.value?.string ?? code, value: (valueString ?? code) as NSCoding & NSCopying & NSObjectProtocol)
                     choices.append(text)
                 }
             }

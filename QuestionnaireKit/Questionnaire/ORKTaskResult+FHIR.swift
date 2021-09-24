@@ -48,13 +48,12 @@ extension ORKTaskResult {
 			}
 		}
 		
-		// create and return questionnaire answers
-//		let questionnaire = Reference()
-//		questionnaire.reference = FHIRString(identifier)
-		
 		let answer = QuestionnaireResponse(status: QuestionnaireResponseStatus.completed.asPrimitive())
+        answer.id = UUID().uuidString.asFHIRStringPrimitive()
+        answer.authored = try? DateTime(date: Date()).asPrimitive()
 		//TODO need the source Questionnaire canonical URI
 //		answer.questionnaire = questionnaireURI
+        
 		answer.item = groups
 		answer.deduplicateItemsByLinkId()
 		return answer
@@ -257,11 +256,12 @@ extension ORKChoiceQuestionResult {
 		var answers = [QuestionnaireResponseItemAnswer]()
 		for choice in choices {
 			let answer = QuestionnaireResponseItemAnswer()
-			let splat = choice.split() { $0 == kORKTextChoiceSystemSeparator }.map() { String($0) }
-			let system = splat[0]
-			let code = (splat.count > 1) ? splat[1..<splat.endIndex].joined(separator: String(kORKTextChoiceSystemSeparator)) : kORKTextChoiceMissingCodeCode
-			let coding = Coding(code: code.asFHIRStringPrimitive(), system: system.asFHIRURIPrimitive())
-			answer.value = QuestionnaireResponseItemAnswer.ValueX.coding(coding)
+            if let coding = try? JSONDecoder().decode(Coding.self, from: choice.data(using: .utf8)!) {
+                answer.value = QuestionnaireResponseItemAnswer.ValueX.coding(coding)
+            }
+            else {
+                answer.value = QuestionnaireResponseItemAnswer.ValueX.string(choice.asFHIRStringPrimitive())
+            }
 			answers.append(answer)
 		}
 		return answers
