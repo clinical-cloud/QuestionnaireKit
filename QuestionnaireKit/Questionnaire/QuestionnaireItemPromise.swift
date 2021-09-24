@@ -114,7 +114,9 @@ class QuestionnaireItemPromise: QuestionnairePromiseProto {
             
 //            else if self.isSubGroup && self.item.type == .group {
             else if self.isSubGroup {
-                thisStep = ConditionalFormStep(identifier: self.linkId, linkIds: self.linkIds, title: title, text: nil)
+                let step = ConditionalFormStep(identifier: self.linkId, linkIds: self.linkIds, title: title, text: nil)
+                step.isOptional = !(self.item.required?.value?.bool ?? false)
+                thisStep = step
             }
             
             // Issue with ResearchKit: presentation of text, numeric or date value entry fields within a Form; exclude from Form, add as question.

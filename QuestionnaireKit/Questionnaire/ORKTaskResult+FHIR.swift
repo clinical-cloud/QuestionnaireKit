@@ -80,6 +80,7 @@ extension ORKStepResult {
 				if let result = result as? ORKQuestionResult {
 					if let question = task?.step?(withIdentifier: result.identifier) as? ORKQuestionStep, let answers = result.qk_responseItemAnswers(from: question) {
 						var response = QuestionnaireResponseItem(linkId: result.identifier.asFHIRStringPrimitive())
+                        response.text = question.text?.asFHIRStringPrimitive()
 						response.answer = answers
 						
 						// wrap into parent items - will dedupe by linkId later
@@ -92,7 +93,31 @@ extension ORKStepResult {
 							}
 						}
 						items.append(response)
-					}
+                    }
+                    else if let orderedTask = task as? ORKOrderedTask {
+                        for step in orderedTask.steps {
+                            if let form = step as? ORKFormStep {
+                                for formItem in form.formItems ?? [] {
+                                    if formItem.identifier == result.identifier, let answers = result.qk_responseItemAnswers(from: formItem) {
+                                        var response = QuestionnaireResponseItem(linkId: result.identifier.asFHIRStringPrimitive())
+                                        response.text = formItem.text?.asFHIRStringPrimitive()
+                                        response.answer = answers
+                                        
+                                        // wrap into parent items - will dedupe by linkId later
+                                        if let conditional = formItem as? ConditionalStep {
+                                            var parentIds = conditional.linkIds
+                                            while let parentId = parentIds.popLast() {
+                                                let parent = QuestionnaireResponseItem(linkId: parentId.asFHIRStringPrimitive())
+                                                parent.item = [response]
+                                                response = parent
+                                            }
+                                        }
+                                        items.append(response)
+                                    }
+                                }
+                            }
+                        }
+                    }
 				}
 				else {
 					qk_warn("I cannot handle ORKStepResult result \(result)")
@@ -150,6 +175,37 @@ extension ORKQuestionResult {
 		qk_warn("I don't understand ORKQuestionResult answer from \(self)")
 		return nil
 	}
+    
+    func qk_responseItemAnswers(from item: ORKFormItem?) -> [QuestionnaireResponseItemAnswer]? {
+        let fhirType = (item as? ConditionalFormItem)?.fhirType
+        
+        if let this = self as? ORKChoiceQuestionResult {
+            return this.qk_responseItems(ofFHIRType: fhirType)
+        }
+        if let this = self as? ORKTextQuestionResult {
+            return this.qk_responseItems(ofFHIRType: fhirType)
+        }
+        if let this = self as? ORKNumericQuestionResult {
+            return this.qk_responseItems(ofFHIRType: fhirType)
+        }
+        if let this = self as? ORKScaleQuestionResult {
+            return this.qk_responseItems(ofFHIRType: fhirType)
+        }
+        if let this = self as? ORKBooleanQuestionResult {
+            return this.qk_responseItems(ofFHIRType: fhirType)
+        }
+        if let this = self as? ORKTimeOfDayQuestionResult {
+            return this.qk_responseItems(ofFHIRType: fhirType)
+        }
+        if let this = self as? ORKTimeIntervalQuestionResult {
+            return this.qk_responseItems(ofFHIRType: fhirType)
+        }
+        if let this = self as? ORKDateQuestionResult {
+            return this.qk_responseItems(ofFHIRType: fhirType)
+        }
+        qk_warn("I don't understand ORKQuestionResult answer from \(self)")
+        return nil
+    }
 	
 	/**
 	Checks whether the receiver is the same result as the other result.
