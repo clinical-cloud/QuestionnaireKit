@@ -1,0 +1,493 @@
+{
+  "id": "mpc-lung-cancer",
+  "url": "http://fhir.org/guides/preventive-care/Questionnaire/mpc-lung-cancer",
+  "meta": {
+    "versionId": "0.1.0",
+    "profile": [
+      "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire|2.7",
+      "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-shareablequestionnaire"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueString": "shareable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueString": "publishable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+      "valueString": "narrative"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueString": "computable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+      "valueString": "structured"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+      "valueString": "executable"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+      "valueString": "executable"
+    }
+  ],
+  "status": "active",
+  "title": "Lung Cancer Screening Questionnaire",
+  "resourceType": "Questionnaire",
+  "item": [
+    {
+      "type": "display",
+      "linkId": "learn-more-uspstf",
+      "text": "The website linked below provides some information from the [U.S. Preventive Services Task Force (USPSTF)](https://www.uspreventiveservicestaskforce.org/uspstf/recommendation-topics/information-for-consumers) about the benefits and harms of lung cancer screening. This information can help you prepare to ask questions that are **important** to _you_ when you visit your doctor.",
+      "prefix": "Learn More"
+    },
+    {
+      "type": "choice",
+      "code": [
+        {
+          "code": "mpc-do-next",
+          "display": "What do you want to do next?",
+          "system": "http://fhir.org/guides/preventive-care/CodeSystem/mpc-questionnaire-codes"
+        }
+      ],
+      "required": true,
+      "linkId": "1",
+      "text": "What do you want to do next?",
+      "prefix": "Next Steps",
+      "answerOption": [
+        {
+          "valueCoding": {
+            "code": "more-thought",
+            "display": "I want to give it more thought",
+            "system": "http://fhir.org/guides/preventive-care/CodeSystem/mpc-questionnaire-codes"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "get-test",
+            "display": "I want to get tested for lung cancer",
+            "system": "http://fhir.org/guides/preventive-care/CodeSystem/mpc-questionnaire-codes"
+          }
+        },
+        {
+          "valueCoding": {
+            "code": "do-not-want-test",
+            "display": "I do not want to get tested for lung cancer",
+            "system": "http://fhir.org/guides/preventive-care/CodeSystem/mpc-questionnaire-codes"
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "code": [
+        {
+          "system": "http://fhir.org/guides/preventive-care/CodeSystem/mpc-questionnaire-codes",
+          "code": "next-step",
+          "display": "What do you want to do next?"
+        }
+      ],
+      "required": false,
+      "linkId": "2",
+      "text": "How do you feel about your decision?",
+      "prefix": "Next Steps",
+      "item": [
+        {
+          "type": "choice",
+          "code": [
+            {
+              "code": "x",
+              "display": "Know benefits",
+              "system": "http://fhir.org/guides/preventive-care/CodeSystem/mpc-questionnaire-codes"
+            }
+          ],
+          "required": false,
+          "linkId": "2.1",
+          "text": "I know the benefits of getting a low dose CT scan.",
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "1"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15236-5",
+                "display": "Strongly disagree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "2"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15773-7",
+                "display": "Disagree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "3"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA14786-0",
+                "display": "Neutral"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "4"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15774-5",
+                "display": "Agree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "5"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15237-3",
+                "display": "Strongly agree"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "code": [
+            {
+              "code": "x",
+              "display": "Know risks",
+              "system": "http://fhir.org/guides/preventive-care/CodeSystem/mpc-questionnaire-codes"
+            }
+          ],
+          "required": false,
+          "linkId": "2.2",
+          "text": "I know the risks of getting a low dose CT scan.",
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "1"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15236-5",
+                "display": "Strongly disagree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "2"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15773-7",
+                "display": "Disagree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "3"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA14786-0",
+                "display": "Neutral"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "4"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15774-5",
+                "display": "Agree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "5"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15237-3",
+                "display": "Strongly agree"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "code": [
+            {
+              "code": "x",
+              "display": "Clear on what matters to me",
+              "system": "http://fhir.org/guides/preventive-care/CodeSystem/mpc-questionnaire-codes"
+            }
+          ],
+          "required": false,
+          "linkId": "2.3",
+          "text": "I am clear about which benefits and risks matter most to me.",
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "1"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15236-5",
+                "display": "Strongly disagree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "2"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15773-7",
+                "display": "Disagree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "3"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA14786-0",
+                "display": "Neutral"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "4"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15774-5",
+                "display": "Agree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "5"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15237-3",
+                "display": "Strongly agree"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "code": [
+            {
+              "code": "x",
+              "display": "Have support",
+              "system": "http://fhir.org/guides/preventive-care/CodeSystem/mpc-questionnaire-codes"
+            }
+          ],
+          "required": false,
+          "linkId": "2.4",
+          "text": "I have enough support and advice to make a decision about getting a low dose CT scan.",
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "1"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15236-5",
+                "display": "Strongly disagree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "2"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15773-7",
+                "display": "Disagree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "3"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA14786-0",
+                "display": "Neutral"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "4"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15774-5",
+                "display": "Agree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "5"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15237-3",
+                "display": "Strongly agree"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "code": [
+            {
+              "code": "x",
+              "display": "Sure about choice",
+              "system": "http://fhir.org/guides/preventive-care/CodeSystem/mpc-questionnaire-codes"
+            }
+          ],
+          "required": false,
+          "linkId": "2.5",
+          "text": "I feel sure about the best choice for me.",
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "1"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15236-5",
+                "display": "Strongly disagree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "2"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15773-7",
+                "display": "Disagree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "3"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA14786-0",
+                "display": "Neutral"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "4"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15774-5",
+                "display": "Agree"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                  "valueString": "5"
+                }
+              ],
+              "valueCoding": {
+                "code": "LA15237-3",
+                "display": "Strongly agree"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "3",
+      "required": true,
+      "code": [
+        {
+          "system": "http://fhir.org/guides/preventive-care/CodeSystem/mpc-questionnaire-codes",
+          "code": "Discuss at next appointment"
+        }
+      ],
+      "prefix": "Next Steps",
+      "text": "Would you like to discuss lung cancer screening at your next appointment? MyPreventiveCare can let your provider know what you want.",
+      "type": "boolean"
+    }
+  ]
+}

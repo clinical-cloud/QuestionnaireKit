@@ -104,6 +104,8 @@ class QuestionnairesTableViewController: UITableViewController {
 			"Questionnaire-PHQ4-grouped",
 			"Questionnaire-PHQ9",
 			"Questionnaire-SDOHCC-QuestionnairePRAPARE",
+            "mpc-colon-cancer",
+            "mpc-lung-cancer",
 		]
 		
 		for fileName in questionnaireFiles {
@@ -113,6 +115,7 @@ class QuestionnairesTableViewController: UITableViewController {
 			}
 			catch {
 				print("Error loading sample data file: \(fileName)")
+                print(error)
 			}
 		}
 	}

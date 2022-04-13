@@ -194,7 +194,23 @@ class ConditionalInstructionStep: ORKInstructionStep, ConditionalStep {
 		super.init(identifier: identifier)
 		linkIds = ids
 		title = ttl
-		text = txt
+//        text = "Instructions"
+        if let txt = txt {
+//            if #available(iOS 15, *) {
+//                // preserve newline in markdown text
+//                let markdownOptions = AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace)
+//                if let attrText = try? NSMutableAttributedString(markdown: txt, options: markdownOptions){
+//                    let range = NSRange(location: 0, length: attrText.mutableString.length)
+//                    attrText.addAttribute(NSAttributedString.Key.font, value: UIFont.preferredFont(forTextStyle: .body), range: range)
+//                    attributedDetailText = attrText
+//                }
+//                else {
+//                    detailText = txt
+//                }
+//            } else {
+                detailText = txt
+//            }
+        }
 	}
 	
 	

@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "FHIRModels",
+        "repositoryURL": "https://github.com/apple/FHIRModels.git",
+        "state": {
+          "branch": "main",
+          "revision": "e115442fb3c5d44ffb1dc9b4e039b77fd143ad96",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
